@@ -14,50 +14,43 @@ import Combine
 public class LaunchViewModel: ObservableObject {
     // MARK: - PROPERTIES -
     @Published public var launches: LaunchItems = []
-
+    
     // MARK: - CONSTRUCTOR -
     public init(service: HomeLaunchSectionServiceInput, dateHelper: DateHelper) {
         fetchingLaunches(service: service, offSet: 0, dateHelper: dateHelper)
             .map { $0 }
             .assign(to: &$launches)
     }
-
+    
     // MARK: - EXPOSED METHODS -
-    public func getLaunchesSorted(by sort: AppBarScopedButtons) -> LaunchItems {
-        switch sort {
-        case .asc:
-            return getLaunchesAscendingOrder()
-        case .desc:
-            return getLaunchesDescendingOrder()
-        }
-    }
-    
-    public func getLaunchesFilteredBy(text: String) {
-        launches = launches.filter({ $0.launchYear.lowercased().contains(text.lowercased()) })
-    }
-    
-    public func getLaunchesAscendingOrder() -> LaunchItems {
-        return launches.sorted(by: { (lItem: Launch, rItem: Launch) -> Bool in
-            return lItem.launchYear < rItem.launchYear })
-    }
-    
-    public func getLaunchesDescendingOrder() -> LaunchItems {
-        return launches.sorted(by: { (lItem: Launch, rItem: Launch) -> Bool in
-            return lItem.launchYear > rItem.launchYear })
+    public func getLaunches(by text: String, and sort: AppBarScopedButtons) -> LaunchItems {
+        return launches
+            .filter({
+                guard !text.isEmpty else { return true }
+                return $0.launchYear.lowercased().contains(text.lowercased())
+            })
+            .sorted(by: { (lItem: Launch, rItem: Launch) -> Bool in
+                switch sort {
+                case .asc:
+                    return lItem.launchYear < rItem.launchYear
+                case .desc:
+                    return lItem.launchYear > rItem.launchYear
+                }
+            })
     }
 }
 
 // MARK: - ASSISTANT METHODS -
 extension LaunchViewModel {
-        private func fetchingLaunches(service: HomeLaunchSectionServiceInput, offSet: Int, dateHelper: DateHelper) -> AnyPublisher<LaunchItems, Never> {
-            return service.fetchLaunches(offSet: offSet)
-                .decode(type: Launches.self, decoder: JSONDecoder())
-                .compactMap {
-                    return self.mapLaunches(launches: $0, dateHelper: dateHelper)
-                }
-                .replaceError(with: [])
-                .eraseToAnyPublisher()
-        }
+    private func fetchingLaunches(service: HomeLaunchSectionServiceInput, offSet: Int, dateHelper: DateHelper) -> AnyPublisher<LaunchItems, Never> {
+        return service.fetchLaunches(offSet: offSet)
+            .decode(type: Launches.self, decoder: JSONDecoder())
+            .compactMap {
+                return self.mapLaunches(launches: $0, dateHelper: dateHelper)
+            }
+            .replaceError(with: [])
+            .eraseToAnyPublisher()
+    }
     
     private func mapLaunches(launches: Launches, dateHelper: DateHelper) -> LaunchItems {
         return launches.compactMap({ (current) -> Launch? in
@@ -78,17 +71,17 @@ extension LaunchViewModel {
             let daysDescription = getDaysDescriptionMessage(launchDate: launchDate, dateHelper: dateHelper)
             let date = dateHelper.getUTCDayFormatted(dateString: launchDateString)
             let rocketString = "\(rocketName) / \(RocketType)"
-
+            
             return Launch(missionName: missionName, date: date, rocket: rocketString, days: days, daysDescription: daysDescription, launchYear: year, isLaunchSuccess: isLaunchSuccess, imageURL: imageURL, articleURL: articleURL)
         })
     }
-
+    
     private func getDaysDescriptionMessage(launchDate: Date, dateHelper: DateHelper) -> String {
         let today = Date()
         let totalDays = dateHelper.numberOfDaysBetween(launchDate, and: today)
         if totalDays > 0 {
             return "\(totalDays) days\n since now:"
-
+            
         } else if totalDays == 0 {
             return "now"
         }
@@ -96,13 +89,13 @@ extension LaunchViewModel {
             return "\(abs(totalDays)) days\n from now:"
         }
     }
-
+    
     private func getDaysMessage(launchDate: Date, dateHelper: DateHelper) -> String {
         let today = Date()
         let totalDays = dateHelper.numberOfDaysBetween(launchDate, and: today)
         if totalDays > 0 {
             return "\(dateHelper.getDateString(date: today)) - \(dateHelper.getDateString(date: launchDate))"
-
+            
         } else if totalDays == 0 {
             return "today"
         }

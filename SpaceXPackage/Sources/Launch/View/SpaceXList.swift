@@ -11,13 +11,15 @@ import Core
 
 public struct SpaceXList: View {
     
-    @ObservedObject public var viewModel: LaunchViewModel
+    @ObservedObject public var launchViewModel: LaunchViewModel
+    @ObservedObject public var companyViewModel: CompanyViewModel
     @State public var inputText = ""
     @State public var pickerSelected: AppBarScopedButtons = AppBarScopedButtons.asc
     
     // MARK: - CONSTRUCTOR -
-    public init(viewModel: LaunchViewModel) {
-        self.viewModel = viewModel
+    public init(launchViewModel: LaunchViewModel, companyViewModel: CompanyViewModel) {
+        self.launchViewModel = launchViewModel
+        self.companyViewModel = companyViewModel
     }
     
     public var body: some View {
@@ -25,27 +27,15 @@ public struct SpaceXList: View {
             AppBarView(inputText: $inputText, pickerSelected: $pickerSelected)
             List {
                 Section(header: Text("Company")) {
-                    CompanySectionView(viewModel: CompanySectionBuilder().makeViewModel())
+                    CompanySectionView(viewModel: companyViewModel)
                 }
                 
                 Section(header: Text("Launch")) {
-                    ForEach(viewModel.getLaunchesSorted(by: pickerSelected), id: \.self) { item in
+                    ForEach(launchViewModel.getLaunches(by: inputText, and: pickerSelected), id: \.self) { item in
                         LaunchSectionView(launch: item)
                     }
                 }
             }
         }
     }
-        
-        //        if pickerSelected == "DESC" { return ["fla", "vas", "flu"] }
-        //        if inputText.isEmpty {
-        //            return nameItems
-        //        } else {
-        //            return nameItems.filter { $0.lowercased().contains(inputText.lowercased()) }.sorted(by: {
-        //                if pickerSelected == AppBarView.Constants.desc.rawValue {
-        //                    return $0 < $1
-        //                } else {
-        //                    return $0 > $1
-        //                }
-        //            })
 }

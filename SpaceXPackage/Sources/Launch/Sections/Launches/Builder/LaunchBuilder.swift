@@ -17,7 +17,8 @@ class LaunchBuilder: LaunchBuilderInput {
     
     public func make() -> UIViewController {
         let service = HomeLaunchSectionService(baseRequest: BaseRequest())
-        let viewModel = LaunchViewModel(service: service, dateHelper: DateHelper())
-        return UIHostingController(rootView: SpaceXList(viewModel: viewModel))
+        let launchViewModel = LaunchViewModel(service: service, dateHelper: DateHelper())
+        return UIHostingController(rootView: SpaceXList(launchViewModel: launchViewModel,
+                                                        companyViewModel: CompanySectionBuilder().makeViewModel()))
     }
 }
