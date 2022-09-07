@@ -34,7 +34,7 @@ public class BaseRequestSuccessHandlerSpy: BaseRequestInput {
     }
 }
 
-// MARK: - AUX -
+// MARK: - ASSISTANT -
 extension BaseRequestSuccessHandlerSpy {
     private func getLocalFileNameByService() -> String {
         switch self.service {

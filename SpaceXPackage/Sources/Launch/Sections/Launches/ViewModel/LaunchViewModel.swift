@@ -14,12 +14,10 @@ import Combine
 public class LaunchViewModel: ObservableObject {
     // MARK: - PROPERTIES -
     @Published public var launches: LaunchItems = []
-    public var service: HomeLaunchSectionServiceInput
 
     // MARK: - CONSTRUCTOR -
     public init(service: HomeLaunchSectionServiceInput, dateHelper: DateHelper) {
-        self.service = service
-        fetchingLaunches(offSet: 0, dateHelper: dateHelper)
+        fetchingLaunches(service: service, offSet: 0, dateHelper: dateHelper)
             .map { $0 }
             .assign(to: &$launches)
     }
@@ -40,9 +38,9 @@ public class LaunchViewModel: ObservableObject {
     }
 }
 
-// MARK: - AUX METHODS -
+// MARK: - ASSISTANT METHODS -
 extension LaunchViewModel {
-        private func fetchingLaunches(offSet: Int, dateHelper: DateHelper) -> AnyPublisher<LaunchItems, Never> {
+        private func fetchingLaunches(service: HomeLaunchSectionServiceInput, offSet: Int, dateHelper: DateHelper) -> AnyPublisher<LaunchItems, Never> {
             return service.fetchLaunches(offSet: offSet)
                 .decode(type: Launches.self, decoder: JSONDecoder())
                 .compactMap {

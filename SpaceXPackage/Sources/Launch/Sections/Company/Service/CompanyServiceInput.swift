@@ -8,13 +8,14 @@
 
 import Foundation
 import Network
+import Combine
 
 // MARK: - SERVICE INPUT PROTOCOL -
-public protocol HomeCompanySectionServiceInput: AnyObject {
+public protocol CompanyServiceInput: AnyObject {
     // MARK: - VARIABLES -
     var baseRequest: BaseRequestInput { get set }
 
     // MARK: - INPUT METHODS -
-    func getInfo(completionHandler: @escaping (Data?) -> Void)
+    func fetchInfo() -> AnyPublisher<Data, APIError>
 }
 

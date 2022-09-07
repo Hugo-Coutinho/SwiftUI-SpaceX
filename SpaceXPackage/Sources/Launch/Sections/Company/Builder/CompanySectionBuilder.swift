@@ -10,10 +10,15 @@ import Foundation
 import Network
 import SwiftUI
 
-public final class HomeCompanySectionBuilder: HomeCompanySectionBuilderInput {
+public final class CompanySectionBuilder: CompanySectionBuilderInput {
 
     // MARK: - CONSTRUCTOR -
     public init(){}
+    
+    public func makeViewModel() -> CompanyViewModel {
+        let service = CompanyService(baseRequest: BaseRequest())
+        return CompanyViewModel(service: service)
+    }
 }
 
 

@@ -6,7 +6,9 @@
 //
 
 import Foundation
+import SwiftUI
 
-public protocol HomeCompanySectionBuilderInput {
+public protocol CompanySectionBuilderInput {
+    func makeViewModel() -> CompanyViewModel
 }
 
