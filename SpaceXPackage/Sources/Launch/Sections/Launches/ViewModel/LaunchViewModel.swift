@@ -23,17 +23,26 @@ public class LaunchViewModel: ObservableObject {
     }
 
     // MARK: - EXPOSED METHODS -
+    public func getLaunchesSorted(by sort: AppBarScopedButtons) -> LaunchItems {
+        switch sort {
+        case .asc:
+            return getLaunchesAscendingOrder()
+        case .desc:
+            return getLaunchesDescendingOrder()
+        }
+    }
+    
     public func getLaunchesFilteredBy(text: String) {
         launches = launches.filter({ $0.launchYear.lowercased().contains(text.lowercased()) })
     }
-
-    public func getLaunchesAscendingOrder() {
-        launches =  launches.sorted(by: { (lItem: Launch, rItem: Launch) -> Bool in
+    
+    public func getLaunchesAscendingOrder() -> LaunchItems {
+        return launches.sorted(by: { (lItem: Launch, rItem: Launch) -> Bool in
             return lItem.launchYear < rItem.launchYear })
     }
-
-    public func getLaunchesDescendingOrder() {
-        launches = launches.sorted(by: { (lItem: Launch, rItem: Launch) -> Bool in
+    
+    public func getLaunchesDescendingOrder() -> LaunchItems {
+        return launches.sorted(by: { (lItem: Launch, rItem: Launch) -> Bool in
             return lItem.launchYear > rItem.launchYear })
     }
 }

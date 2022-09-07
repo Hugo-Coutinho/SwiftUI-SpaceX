@@ -7,18 +7,20 @@
 
 import SwiftUI
 
+public enum AppBarScopedButtons: String, Identifiable, CaseIterable {
+    case asc = "ASC"
+    case desc = "DESC"
+    
+    public var id: AppBarScopedButtons { self }
+}
+
 public struct AppBarView: View {
     @State private var showSearchBar = false
     @Binding public var inputText: String
-    @Binding public var pickerSelected: String
-    private let segments = [Constants.asc.rawValue, Constants.desc.rawValue]
+    @Binding public var pickerSelected: AppBarScopedButtons
+    private let segments = [AppBarScopedButtons.asc, AppBarScopedButtons.desc]
     
-    public enum Constants: String {
-        case asc = "ASC"
-        case desc = "DESC"
-    }
-    
-    public init(inputText: Binding<String>, pickerSelected: Binding<String>) {
+    public init(inputText: Binding<String>, pickerSelected: Binding<AppBarScopedButtons>) {
         self._inputText = inputText
         self._pickerSelected = pickerSelected
     }
@@ -36,7 +38,7 @@ public struct AppBarView: View {
     public var PickerLaunchOrder: some View {
         Picker("Choose course", selection: $pickerSelected) {
             ForEach(segments, id:\.self) { segment in
-                Text(segment)
+                Text(segment.rawValue)
                     .tag(segment)
             }
         }
