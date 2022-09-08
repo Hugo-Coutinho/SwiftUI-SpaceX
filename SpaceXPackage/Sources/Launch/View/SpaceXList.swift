@@ -23,7 +23,7 @@ public struct SpaceXList: View {
     }
     
     public var body: some View {
-        VStack(spacing: 0) {
+        VStack {
             AppBarView(inputText: $inputText, pickerSelected: $pickerSelected)
             List {
                 Section(header: Text("Company")) {
@@ -31,10 +31,20 @@ public struct SpaceXList: View {
                 }
                 
                 Section(header: Text("Launch")) {
-                    ForEach(launchViewModel.getLaunches(by: inputText, and: pickerSelected), id: \.self) { item in
-                        LaunchSectionView(launch: item)
+                    let launches = launchViewModel.getLaunches(by: inputText, and: pickerSelected)
+                    ForEach(launches.indices, id: \.self) { launchIndex in
+                        let launch = launches[launchIndex]
+                        LaunchSectionView(launch: launch)
+                            .onAppear {
+                                if launchIndex == launches.count - 1 {
+                                    launchViewModel.loadMoreContentIfNeeded()
+                                }
+                            }
                     }
                 }
+            }
+            if launchViewModel.isLoadingPage {
+                ProgressView()
             }
         }
     }

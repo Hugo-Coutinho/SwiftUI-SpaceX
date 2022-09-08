@@ -14,10 +14,18 @@ import Combine
 public class LaunchViewModel: ObservableObject {
     // MARK: - PROPERTIES -
     @Published public var launches: LaunchItems = []
+    @Published public var isLoadingPage = false
+    
+    private var service: HomeLaunchSectionServiceInput
+    private var dateHelper: DateHelper
+    private var currentPage = 1
+    private var cancellables = Set<AnyCancellable>()
     
     // MARK: - CONSTRUCTOR -
     public init(service: HomeLaunchSectionServiceInput, dateHelper: DateHelper) {
-        fetchingLaunches(service: service, offSet: 0, dateHelper: dateHelper)
+        self.service = service
+        self.dateHelper = dateHelper
+        fetchingLaunches(offSet: currentPage)
             .map { $0 }
             .assign(to: &$launches)
     }
@@ -38,21 +46,36 @@ public class LaunchViewModel: ObservableObject {
                 }
             })
     }
+    
+    public func loadMoreContentIfNeeded() {
+        guard !isLoadingPage else { return }
+        isLoadingPage = true
+        fetchingLaunches(offSet: currentPage)
+            .map { $0 }
+            .sink (receiveValue: { items in
+                self.isLoadingPage = false
+                self.currentPage += 1
+                self.launches.append(contentsOf: items)
+                self.objectWillChange.send()
+            })
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - ASSISTANT METHODS -
 extension LaunchViewModel {
-    private func fetchingLaunches(service: HomeLaunchSectionServiceInput, offSet: Int, dateHelper: DateHelper) -> AnyPublisher<LaunchItems, Never> {
+    private func fetchingLaunches(offSet: Int) -> AnyPublisher<LaunchItems, Never> {
         return service.fetchLaunches(offSet: offSet)
             .decode(type: Launches.self, decoder: JSONDecoder())
+            .receive(on: DispatchQueue.main)
             .compactMap {
-                return self.mapLaunches(launches: $0, dateHelper: dateHelper)
+                return self.mapLaunches(launches: $0)
             }
             .replaceError(with: [])
             .eraseToAnyPublisher()
     }
     
-    private func mapLaunches(launches: Launches, dateHelper: DateHelper) -> LaunchItems {
+    private func mapLaunches(launches: Launches) -> LaunchItems {
         return launches.compactMap({ (current) -> Launch? in
             guard let missionName = current.missionName,
                   let launchDateString = current.launchDate,
@@ -72,7 +95,15 @@ extension LaunchViewModel {
             let date = dateHelper.getUTCDayFormatted(dateString: launchDateString)
             let rocketString = "\(rocketName) / \(RocketType)"
             
-            return Launch(missionName: missionName, date: date, rocket: rocketString, days: days, daysDescription: daysDescription, launchYear: year, isLaunchSuccess: isLaunchSuccess, imageURL: imageURL, articleURL: articleURL)
+            return Launch(missionName: missionName,
+                          date: date,
+                          rocket: rocketString,
+                          days: days,
+                          daysDescription: daysDescription,
+                          launchYear: year,
+                          isLaunchSuccess: isLaunchSuccess,
+                          imageURL: imageURL,
+                          articleURL: articleURL)
         })
     }
     
