@@ -10,7 +10,7 @@ import Foundation
 import Network
 import Combine
 
-public class HomeLaunchSectionService: HomeLaunchSectionServiceInput {
+public class LaunchService: LaunchServiceInput {
     
     // MARK: - CONSTANT -
     private let launch = "/launches"

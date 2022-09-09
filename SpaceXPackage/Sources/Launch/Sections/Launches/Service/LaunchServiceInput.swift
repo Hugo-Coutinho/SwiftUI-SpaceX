@@ -11,7 +11,7 @@ import Network
 import Combine
 
 // MARK: - SERVICE INPUT PROTOCOL -
-public protocol HomeLaunchSectionServiceInput: AnyObject {
+public protocol LaunchServiceInput: AnyObject {
     // MARK: - VARIABLES -
     var baseRequest: BaseRequestInput { get set }
 

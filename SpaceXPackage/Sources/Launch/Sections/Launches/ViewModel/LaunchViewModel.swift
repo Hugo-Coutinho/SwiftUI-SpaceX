@@ -16,13 +16,13 @@ public class LaunchViewModel: ObservableObject {
     @Published public var launches: LaunchItems = []
     @Published public var isLoadingPage = false
     
-    private var service: HomeLaunchSectionServiceInput
+    private var service: LaunchServiceInput
     private var dateHelper: DateHelper
     private var currentPage = 1
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - CONSTRUCTOR -
-    public init(service: HomeLaunchSectionServiceInput, dateHelper: DateHelper) {
+    public init(service: LaunchServiceInput, dateHelper: DateHelper) {
         self.service = service
         self.dateHelper = dateHelper
         fetchingLaunches(offSet: currentPage)
@@ -147,8 +147,10 @@ public typealias LaunchItems = [Launch]
 
 
 // MARK: - MOCK
-//extension LaunchViewModel {
-//    public static func getLaunchDomainMock() -> LaunchViewModel {
-//        return LaunchViewModel(launches: [LaunchEntity.getLaunchEntityMock()], dateHelper: DateHelper())
-//    }
-//}
+extension LaunchViewModel {
+    public func getLaunchItemsMock(launchDate: String = "2018-04-10T04:00:00.000Z",
+                                   year: String = "2006",
+                                   launches: Launches? = nil) {
+        self.launches = self.mapLaunches(launches:  launches ?? [LaunchEntity.getLaunchEntityMock(launchDate: launchDate, year: year)])
+    }
+}
