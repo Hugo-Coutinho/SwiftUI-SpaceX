@@ -63,6 +63,7 @@ public class BaseRequest: BaseRequestInput {
                     return APIError.apiError(reason: error.localizedDescription)
                 }
             }
+            .receive(on: RunLoop.main)
             .eraseToAnyPublisher()
     }
 }

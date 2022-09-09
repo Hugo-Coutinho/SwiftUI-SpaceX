@@ -13,20 +13,25 @@ struct LaunchSectionView: View {
     @Environment(\.openURL) var openURL
     var launch: Launch
     
+    var imagesView: some View {
+        HStack {
+            Spacer()
+            LazyImage(source: launch.imageURL, resizingMode: .aspectFit)
+                .frame(width: 50, height: 50)
+            
+            Spacer()
+            VStack {
+                Image(systemName: launch.isLaunchSuccess ? "checkmark": "x.circle")
+                    .resizable()
+                    .frame(width: 30, height: 30)
+            }
+        }
+    }
+    
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                LazyImage(source: launch.imageURL, resizingMode: .aspectFit)
-                    .frame(width: 50, height: 50)
-                
-                Spacer()
-                VStack {
-                    Image(systemName: launch.isLaunchSuccess ? "checkmark": "x.circle")
-                        .resizable()
-                        .frame(width: 30, height: 30)
-                }
-            }
+            
+            imagesView
             
             HStack {
                 VStack(alignment: .leading, spacing: 8) {

@@ -25,6 +25,7 @@ public struct SpaceXList: View {
     public var body: some View {
         VStack {
             AppBarView(inputText: $inputText, pickerSelected: $pickerSelected)
+                .navigationBarHidden(true)
             List {
                 Section(header: Text("Company")) {
                     CompanySectionView(viewModel: companyViewModel)
@@ -37,7 +38,7 @@ public struct SpaceXList: View {
                         LaunchSectionView(launch: launch)
                             .onAppear {
                                 if launchIndex == launches.count - 1 {
-                                    launchViewModel.loadMoreContentIfNeeded()
+                                    launchViewModel.loadMoreContentIfNeeded(isUserTexting: !inputText.isEmpty)
                                 }
                             }
                     }

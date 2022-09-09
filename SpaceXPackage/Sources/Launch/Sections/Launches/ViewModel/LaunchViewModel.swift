@@ -47,8 +47,9 @@ public class LaunchViewModel: ObservableObject {
             })
     }
     
-    public func loadMoreContentIfNeeded() {
-        guard !isLoadingPage else { return }
+    public func loadMoreContentIfNeeded(isUserTexting: Bool) {
+        guard !isLoadingPage,
+              !isUserTexting else { return }
         isLoadingPage = true
         fetchingLaunches(offSet: currentPage)
             .map { $0 }
@@ -67,7 +68,6 @@ extension LaunchViewModel {
     private func fetchingLaunches(offSet: Int) -> AnyPublisher<LaunchItems, Never> {
         return service.fetchLaunches(offSet: offSet)
             .decode(type: Launches.self, decoder: JSONDecoder())
-            .receive(on: DispatchQueue.main)
             .compactMap {
                 return self.mapLaunches(launches: $0)
             }
