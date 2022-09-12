@@ -1,8 +1,8 @@
 //
-//  UIExtension.swift
-//  KIFSpaceXTests
+//  XCTestCaseExtension.swift
+//  SpaceXUITests
 //
-//  Created by Hugo on 19/03/2022.
+//  Created by Hugo on 12/09/2022.
 //
 
 import KIF
@@ -35,3 +35,4 @@ extension KIFTestActor {
         return KIFSystemTestActor(inFile: file, atLine: line, delegate: self)
     }
 }
+

@@ -28,6 +28,7 @@ public struct AppBarView: View {
     public var SearchBarView: some View {
         VStack {
             TextField("Search something...", text: $inputText)
+                .accessibilityIdentifier("SearchBar")
                 .padding(5)
                 .font(.system(size: 15))
                 .textFieldStyle(.roundedBorder)
@@ -58,6 +59,7 @@ public struct AppBarView: View {
                 }
                 Spacer()
                 Image(systemName: "magnifyingglass")
+                    .accessibilityIdentifier("SearchIcon")
                     .onTapGesture {
                         withAnimation(.easeInOut) {
                             showSearchBar.toggle()
