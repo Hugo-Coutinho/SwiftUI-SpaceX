@@ -20,6 +20,7 @@ class DateHelperTests: XCTestCase {
         super.setUp()
         helper = DateHelper()
     }
+    
     func test_shouldReturn_stringDate() {
         // GIVEN
         let expectedDate = helper.fromUTCToDate(dateString: "2018-04-10T04:00:00.000Z")

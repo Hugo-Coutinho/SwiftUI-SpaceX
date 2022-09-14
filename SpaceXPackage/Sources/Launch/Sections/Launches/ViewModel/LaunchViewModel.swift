@@ -89,7 +89,7 @@ extension LaunchViewModel {
                   let patch = link.missionPatch,
                   let articleLink = link.articleUrl,
                   let imageURL = URL(string: patch),
-                  let articleURL = URL(string: articleLink)else { return nil }
+                  let articleURL = URL(string: articleLink) else { return nil }
             let days = getDaysMessage(launchDate: launchDate, dateHelper: dateHelper)
             let daysDescription = getDaysDescriptionMessage(launchDate: launchDate, dateHelper: dateHelper)
             let date = dateHelper.getUTCDayFormatted(dateString: launchDateString)
@@ -144,13 +144,3 @@ public struct Launch: Hashable {
 }
 
 public typealias LaunchItems = [Launch]
-
-
-// MARK: - MOCK
-extension LaunchViewModel {
-    public func getLaunchItemsMock(launchDate: String = "2018-04-10T04:00:00.000Z",
-                                   year: String = "2006",
-                                   launches: Launches? = nil) {
-        self.launches = self.mapLaunches(launches:  launches ?? [LaunchEntity.getLaunchEntityMock(launchDate: launchDate, year: year)])
-    }
-}

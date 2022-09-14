@@ -49,13 +49,3 @@ public struct Rocket: Codable {
         case rocketType = "rocket_type"
     }
 }
-
-// MARK: - MOCK
-extension LaunchEntity {
-    public static func getLaunchEntityMock(launchDate: String = "2018-04-10T04:00:00.000Z", year: String = "2006") -> LaunchEntity {
-        return LaunchEntity(missionName: "Falconzin Sat",
-                            launchDate: launchDate, launchYear: year,
-                            rocket: Rocket(rocketName: "Falcon 1", rocketType: "Merlin A"),
-                            links: Links(missionPatch: "https://images2.imgbox.com/40/e3/GypSkayF_o.png", articleUrl: "https://www.space.com/2196-spacex-inaugural-falcon-1-rocket-lost-launch.html"), launchSuccess: true)
-    }
-}

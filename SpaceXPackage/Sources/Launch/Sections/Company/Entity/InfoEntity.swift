@@ -22,10 +22,3 @@ public struct InfoEntity: Codable {
         case valuation = "valuation"
     }
 }
-
-// MARK: - MOCK
-extension InfoEntity {
-    public static func getInfoEntityMock() -> InfoEntity {
-        return InfoEntity(name: "SpaceX", founder: "Elon Musk", founded: 2002, employees: 7000, launchSites: 3, valuation: 27500000000)
-    }
-}

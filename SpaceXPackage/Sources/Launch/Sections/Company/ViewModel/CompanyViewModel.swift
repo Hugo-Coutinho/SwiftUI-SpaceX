@@ -41,11 +41,3 @@ extension CompanyViewModel {
             .eraseToAnyPublisher()
     }
 }
-
-// MARK: - MOCK
-//extension CompanyViewModel {
-//    public static func getCompanyDomainMock() -> HomeCompanySectionDomain {
-//        return HomeCompanySectionDomain(info: InfoEntity.getInfoEntityMock())
-//    }
-//}
-//

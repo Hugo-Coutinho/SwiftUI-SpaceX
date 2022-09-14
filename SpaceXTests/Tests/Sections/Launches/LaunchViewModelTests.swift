@@ -75,30 +75,16 @@ class LaunchViewModelTests: XCTestCase {
     
     func test_shouldMatchDays_withFromNow() {
         // 1. GIVEN
-        let launchDateAsString = "2023-04-10T04:00:00.000Z"
         let sut: LaunchViewModel = makeSUT()
         let currentDateAsString = dateHelper.getDateString(date: Date())
         let expected = "2023/04/10 - \(currentDateAsString)"
         
         
         // 2. WHEN
-        sut.getLaunchItemsMock(launchDate: launchDateAsString)
+        let result = sut.launches.first(where: { $0.missionName.elementsEqual("DemoSat") })
         
         // 3. THEN
-        XCTAssertEqual(sut.launches.first?.days, expected)
-    }
-    
-    func test_shouldMatchDays_withCurrentDate() {
-        // 1. GIVEN
-        let launchDateAsString = dateHelper.fromDateToUTC(date: Date())
-        let sut: LaunchViewModel = makeSUT()
-        let expected = "today"
-        
-        // 2. WHEN
-        sut.getLaunchItemsMock(launchDate: launchDateAsString)
-        
-        // 3. THEN
-        XCTAssertEqual(sut.launches.first?.days, expected)
+        XCTAssertEqual(result?.days, expected)
     }
     
     func test_shouldMatchDaysDesc_withFromNow() {
@@ -110,59 +96,40 @@ class LaunchViewModelTests: XCTestCase {
         let expected = "\(dayExpected) days\n from now:"
         
         // 2. WHEN
-        sut.getLaunchItemsMock(launchDate: launchDateAsString)
+        let result = sut.launches.first(where: { $0.missionName.elementsEqual("DemoSat") })
         
         // 3. THEN
-        XCTAssertEqual(sut.launches.first?.daysDescription, expected)
+        XCTAssertEqual(result?.daysDescription, expected)
     }
     
     func test_shouldMatchDaysDesc_withSinceNow() {
         // 1. GIVEN
+        let launchDateAsString = "2006-03-24T22:30:00.000Z"
         let sut: LaunchViewModel = makeSUT()
-        let launchDate = dateHelper.fromUTCToDate(dateString: LaunchEntity.getLaunchEntityMock().launchDate ?? "") ?? Date()
+        let launchDate = dateHelper.fromUTCToDate(dateString: launchDateAsString) ?? Date()
         let dayExpected = "\(abs(dateHelper.numberOfDaysBetween(launchDate, and: Date())))"
         let expected = "\(dayExpected) days\n since now:"
         
         // 2. WHEN
-        sut.getLaunchItemsMock()
+        let result = sut.launches.first(where: { $0.missionName.elementsEqual("Falconzin Sat") })
         
         // 3. THEN
-        XCTAssertEqual(sut.launches.first?.daysDescription, expected)
-    }
-    
-    func test_shouldMatchDaysDesc_withCurrentDate() {
-        // 1. GIVEN
-        let sut: LaunchViewModel = makeSUT()
-        let launchDateAsString = dateHelper.fromDateToUTC(date: Date())
-        let expected = "now"
-        
-        // 2. WHEN
-        sut.getLaunchItemsMock(launchDate: launchDateAsString)
-        
-        // 3. THEN
-        XCTAssertEqual(sut.launches.first?.daysDescription, expected)
+        XCTAssertEqual(result?.daysDescription, expected)
     }
     
     func test_shouldFilter_2007Launches() {
         // 1. GIVEN
         let sut: LaunchViewModel = makeSUT()
         let expected = "2007"
+        let expectedName = "CRS-1"
         
         // 2. WHEN
-        sut.getLaunchItemsMock(launches: [
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date())),
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2007"),
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2009"),
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2011"),
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2007")
-        ])
-        
         let result = sut.getLaunches(by: expected, and: .desc)
         
         // 3. THEN
         XCTAssertEqual(result.count, 2)
         XCTAssertEqual(result.first?.launchYear, expected)
-        XCTAssertEqual(result[1].launchYear, expected)
+        XCTAssertEqual(result[1].missionName, expectedName)
     }
     
     func test_shouldSortYear_ascendingOrder() {
@@ -170,56 +137,39 @@ class LaunchViewModelTests: XCTestCase {
         let sut: LaunchViewModel = makeSUT()
         let firstItemExpected = "2006"
         let secondThirdItemsExpected = "2007"
-        let fourthItemExpected = "2009"
-        let fifthItemExpected = "2011"
+        let fourthFifthItemExpected = "2008"
+        let sixthItemExpected = "2009"
         
         // 2. WHEN
-        sut.getLaunchItemsMock(launches: [
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date())),
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2007"),
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2009")
-            ,LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2011")
-            ,LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2007")
-        ])
-        
         let result = sut.getLaunches(by: "", and: .asc)
         
         // 3. THEN
-        XCTAssertEqual(result.count, 5)
+        XCTAssertEqual(result.count, 9)
         XCTAssertEqual(result.first?.launchYear, firstItemExpected)
         XCTAssertEqual(result[1].launchYear, secondThirdItemsExpected)
         XCTAssertEqual(result[2].launchYear, secondThirdItemsExpected)
-        XCTAssertEqual(result[3].launchYear, fourthItemExpected)
-        XCTAssertEqual(result[4].launchYear, fifthItemExpected)
+        XCTAssertEqual(result[3].launchYear, fourthFifthItemExpected)
+        XCTAssertEqual(result[4].launchYear, fourthFifthItemExpected)
+        XCTAssertEqual(result[5].launchYear, sixthItemExpected)
     }
     
     func test_shouldSortYear_descendingOrder() {
         // 1. GIVEN
         let sut: LaunchViewModel = makeSUT()
-        let firstItemExpected = "2011"
-        let secondItemsExpected = "2009"
-        let thirdFourthItemExpected = "2007"
-        let fifthItemExpected = "2006"
+        let firstItemExpected = "2012"
+        let secondThirdItemsExpected = "2010"
+        let fourthItemExpected = "2009"
         
         
         // 2. WHEN
-        sut.getLaunchItemsMock(launches: [
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date())),
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2007"),
-            LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2009")
-            ,LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2011")
-            ,LaunchEntity.getLaunchEntityMock(launchDate: dateHelper.fromDateToUTC(date: Date()), year: "2007")
-        ])
-        
         let result = sut.getLaunches(by: "", and: .desc)
         
         // 3. THEN
-        XCTAssertEqual(result.count, 5)
+        XCTAssertEqual(result.count, 9)
         XCTAssertEqual(result.first?.launchYear, firstItemExpected)
-        XCTAssertEqual(result[1].launchYear, secondItemsExpected)
-        XCTAssertEqual(result[2].launchYear, thirdFourthItemExpected)
-        XCTAssertEqual(result[3].launchYear, thirdFourthItemExpected)
-        XCTAssertEqual(result[4].launchYear, fifthItemExpected)
+        XCTAssertEqual(result[1].launchYear, secondThirdItemsExpected)
+        XCTAssertEqual(result[2].launchYear, secondThirdItemsExpected)
+        XCTAssertEqual(result[3].launchYear, fourthItemExpected)
     }
     
     func test_shouldHandleError_EmptyLaunches() {
