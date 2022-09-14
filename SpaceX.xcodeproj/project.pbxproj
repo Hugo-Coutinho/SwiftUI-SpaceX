@@ -23,7 +23,6 @@
 		9A5B2C1F28CF66C6000D119D /* LaunchViewSnapshotTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B2C1E28CF66C6000D119D /* LaunchViewSnapshotTesting.swift */; };
 		9A5B2C2328CF6B75000D119D /* SwiftUIExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B2C2228CF6B75000D119D /* SwiftUIExtension.swift */; };
 		9A5B2C2528CF6BB3000D119D /* AppBarSnapshotTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B2C2428CF6BB3000D119D /* AppBarSnapshotTesting.swift */; };
-		9A5B2C2828CF6D8A000D119D /* CompanySectionBuilderSuccessHandlerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B2C2728CF6D8A000D119D /* CompanySectionBuilderSuccessHandlerSpy.swift */; };
 		9A5B2C2B28CF8188000D119D /* KIF in Frameworks */ = {isa = PBXBuildFile; productRef = 9A5B2C2A28CF8188000D119D /* KIF */; };
 		9A5B2C2D28CF8274000D119D /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B2C2C28CF8274000D119D /* XCTestCaseExtension.swift */; };
 		9A5B2C2F28CF896E000D119D /* CompanyViewSnapshotTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B2C2E28CF896E000D119D /* CompanyViewSnapshotTesting.swift */; };
@@ -31,13 +30,11 @@
 		9A621A7528CF309E001A03DB /* HomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A621A7328CF309E001A03DB /* HomeBuilder.swift */; };
 		9AB2743628A9B57500B7F614 /* company_info_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742128A9B57500B7F614 /* company_info_data.json */; };
 		9AB2743728A9B57500B7F614 /* launch_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742228A9B57500B7F614 /* launch_data.json */; };
-		9AB2743928A9B57500B7F614 /* BaseRequestSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2742528A9B57500B7F614 /* BaseRequestSpy.swift */; };
 		9AB2743D28A9B57500B7F614 /* LaunchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2742C28A9B57500B7F614 /* LaunchServiceTests.swift */; };
 		9AB2743E28A9B57500B7F614 /* LaunchViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2742D28A9B57500B7F614 /* LaunchViewModelTests.swift */; };
 		9AB2744328A9B57600B7F614 /* CompanyServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2743328A9B57500B7F614 /* CompanyServiceTests.swift */; };
 		9AB2744628A9B57A00B7F614 /* launch_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742228A9B57500B7F614 /* launch_data.json */; };
 		9AB2744728A9B57C00B7F614 /* company_info_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742128A9B57500B7F614 /* company_info_data.json */; };
-		9AB2749528A9B99A00B7F614 /* BaseRequestSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2742528A9B57500B7F614 /* BaseRequestSpy.swift */; };
 		9AE13DCA28CB7F0D00DFFAC7 /* CompanyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE13DC928CB7F0D00DFFAC7 /* CompanyViewModelTests.swift */; };
 		9AE275B528A7C35D0082F470 /* opening.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9AE275AA28A7C35D0082F470 /* opening.gif */; };
 		9AE275B728A7C35D0082F470 /* scrolling.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9AE275AC28A7C35D0082F470 /* scrolling.gif */; };
@@ -89,7 +86,6 @@
 		9A5B2C1E28CF66C6000D119D /* LaunchViewSnapshotTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewSnapshotTesting.swift; sourceTree = "<group>"; };
 		9A5B2C2228CF6B75000D119D /* SwiftUIExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIExtension.swift; sourceTree = "<group>"; };
 		9A5B2C2428CF6BB3000D119D /* AppBarSnapshotTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarSnapshotTesting.swift; sourceTree = "<group>"; };
-		9A5B2C2728CF6D8A000D119D /* CompanySectionBuilderSuccessHandlerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanySectionBuilderSuccessHandlerSpy.swift; sourceTree = "<group>"; };
 		9A5B2C2C28CF8274000D119D /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
 		9A5B2C2E28CF896E000D119D /* CompanyViewSnapshotTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewSnapshotTesting.swift; sourceTree = "<group>"; };
 		9A621A7228CF309E001A03DB /* HomeBuilderInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBuilderInput.swift; sourceTree = "<group>"; };
@@ -97,7 +93,6 @@
 		9AB2740B28A9B42700B7F614 /* SpaceXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB2742128A9B57500B7F614 /* company_info_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_info_data.json; sourceTree = "<group>"; };
 		9AB2742228A9B57500B7F614 /* launch_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launch_data.json; sourceTree = "<group>"; };
-		9AB2742528A9B57500B7F614 /* BaseRequestSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequestSpy.swift; sourceTree = "<group>"; };
 		9AB2742C28A9B57500B7F614 /* LaunchServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchServiceTests.swift; sourceTree = "<group>"; };
 		9AB2742D28A9B57500B7F614 /* LaunchViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchViewModelTests.swift; sourceTree = "<group>"; };
 		9AB2743328A9B57500B7F614 /* CompanyServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyServiceTests.swift; sourceTree = "<group>"; };
@@ -223,14 +218,6 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		9A5B2C2628CF6D5E000D119D /* Spies */ = {
-			isa = PBXGroup;
-			children = (
-				9A5B2C2728CF6D8A000D119D /* CompanySectionBuilderSuccessHandlerSpy.swift */,
-			);
-			path = Spies;
-			sourceTree = "<group>";
-		};
 		9A5B2C3028CF95FF000D119D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -261,7 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				9AB2742028A9B57500B7F614 /* Fixture */,
-				9AB2742328A9B57500B7F614 /* Spies */,
 				9AB2742928A9B57500B7F614 /* Tests */,
 			);
 			path = SpaceXTests;
@@ -274,14 +260,6 @@
 				9AB2742228A9B57500B7F614 /* launch_data.json */,
 			);
 			path = Fixture;
-			sourceTree = "<group>";
-		};
-		9AB2742328A9B57500B7F614 /* Spies */ = {
-			isa = PBXGroup;
-			children = (
-				9AB2742528A9B57500B7F614 /* BaseRequestSpy.swift */,
-			);
-			path = Spies;
 			sourceTree = "<group>";
 		};
 		9AB2742928A9B57500B7F614 /* Tests */ = {
@@ -322,7 +300,6 @@
 		9AB2747E28A9B93B00B7F614 /* SpaceXUITests */ = {
 			isa = PBXGroup;
 			children = (
-				9A5B2C2628CF6D5E000D119D /* Spies */,
 				9A5B2C2128CF6B60000D119D /* Extension */,
 				9A5B2C2028CF6B39000D119D /* UITests */,
 				9A5B2C1A28CF6633000D119D /* SpaceXUITests-Bridging-Header.h */,
@@ -555,7 +532,6 @@
 				9AB2744328A9B57600B7F614 /* CompanyServiceTests.swift in Sources */,
 				9AE13DCA28CB7F0D00DFFAC7 /* CompanyViewModelTests.swift in Sources */,
 				9AB2743E28A9B57500B7F614 /* LaunchViewModelTests.swift in Sources */,
-				9AB2743928A9B57500B7F614 /* BaseRequestSpy.swift in Sources */,
 				9AB2743D28A9B57500B7F614 /* LaunchServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -565,11 +541,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A5B2C2328CF6B75000D119D /* SwiftUIExtension.swift in Sources */,
-				9A5B2C2828CF6D8A000D119D /* CompanySectionBuilderSuccessHandlerSpy.swift in Sources */,
 				9A5B2C1F28CF66C6000D119D /* LaunchViewSnapshotTesting.swift in Sources */,
 				9A5B2C2528CF6BB3000D119D /* AppBarSnapshotTesting.swift in Sources */,
 				9A5B2C2D28CF8274000D119D /* XCTestCaseExtension.swift in Sources */,
-				9AB2749528A9B99A00B7F614 /* BaseRequestSpy.swift in Sources */,
 				9A5B2C2F28CF896E000D119D /* CompanyViewSnapshotTesting.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

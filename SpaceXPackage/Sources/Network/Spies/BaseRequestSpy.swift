@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Network
 import Combine
 
 public class BaseRequestSuccessHandlerSpy: BaseRequestInput {
@@ -74,6 +73,8 @@ extension BaseRequestSuccessHandlerSpy {
 }
 
 public class BaseRequestErrorHandlerSpy: BaseRequestInput {
+    public init() {}
+        
     public func fetch(url: URL) -> AnyPublisher<Data, APIError> {
         return Fail(error: APIError.unknown).eraseToAnyPublisher()
     }

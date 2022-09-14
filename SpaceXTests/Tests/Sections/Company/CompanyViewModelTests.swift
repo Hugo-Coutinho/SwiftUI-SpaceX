@@ -8,6 +8,7 @@
 import XCTest
 import Combine
 import Launch
+import Network
 
 class CompanyViewModelTests: XCTestCase {
     private var cancellables: Set<AnyCancellable>!

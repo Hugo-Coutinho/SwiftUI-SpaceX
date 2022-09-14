@@ -10,6 +10,7 @@ import XCTest
 import Core
 import Launch
 import Combine
+import Network
 
 class LaunchViewModelTests: XCTestCase {
     private var cancellables: Set<AnyCancellable>!

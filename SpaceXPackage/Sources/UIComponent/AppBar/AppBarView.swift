@@ -2,17 +2,11 @@
 //  SwiftUIView.swift
 //  
 //
-//  Created by Hugo on 07/09/2022.
+//  Created by Hugo on 13/09/2022.
 //
 
 import SwiftUI
-
-public enum AppBarScopedButtons: String, Identifiable, CaseIterable {
-    case asc = "ASC"
-    case desc = "DESC"
-    
-    public var id: AppBarScopedButtons { self }
-}
+import Core
 
 public struct AppBarView: View {
     @State private var showSearchBar = false

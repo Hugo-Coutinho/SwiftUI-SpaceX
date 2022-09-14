@@ -8,6 +8,7 @@
 import SwiftUI
 import Combine
 import Core
+import UIComponent
 
 public struct SpaceXList: View {
     
@@ -48,5 +49,28 @@ public struct SpaceXList: View {
                 ProgressView()
             }
         }
+    }
+}
+
+struct SwiftUISpaceXListView_Previews: PreviewProvider {
+    static var previews: some View {
+        SpaceXList(launchViewModel: getLaunchViewModel(),
+                   companyViewModel: getCompanyViewModel())
+        .previewLayout(.device)
+    }
+    
+    static func getCompanyViewModel() -> CompanyViewModel {
+        let viewModel = CompanySectionBuilder().makeViewModel()
+        viewModel.info = """
+SpaceX was founded by Elon Musk in 2002.
+
+ It has now 7000 employees, 3 Company sites, and is valued at USD $27500000000.00
+"""
+        return viewModel
+    }
+    
+    static func getLaunchViewModel() -> LaunchViewModel {
+        let viewModel = LaunchBuilder().makeViewModel()
+        return viewModel
     }
 }

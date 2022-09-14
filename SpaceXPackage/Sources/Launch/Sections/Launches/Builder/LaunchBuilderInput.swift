@@ -10,4 +10,5 @@ import SwiftUI
 
 protocol LaunchBuilderInput {
     func make() -> UIViewController
+    func makeViewModel() -> LaunchViewModel
 }

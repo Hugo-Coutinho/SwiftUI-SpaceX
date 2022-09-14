@@ -8,6 +8,7 @@
 import XCTest
 import SnapshotTesting
 import SwiftUI
+import UIComponent
 import Core
 import KIF
 
