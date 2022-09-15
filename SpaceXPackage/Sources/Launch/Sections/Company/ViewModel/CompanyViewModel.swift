@@ -34,7 +34,8 @@ extension CompanyViewModel {
     private func fetchingCompanyMessage(service: CompanyServiceInput) -> AnyPublisher<CompanyInfo, Never> {
         return service.fetchInfo()
             .decode(type: InfoEntity.self, decoder: JSONDecoder())
-            .compactMap {
+            .compactMap { [weak self] in
+                guard let self = self else { return nil }
                 return self.mapInfoMessage(info: $0)
             }
             .replaceError(with: "")

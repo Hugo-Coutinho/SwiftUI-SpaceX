@@ -68,7 +68,8 @@ extension LaunchViewModel {
     private func fetchingLaunches(offSet: Int) -> AnyPublisher<LaunchItems, Never> {
         return service.fetchLaunches(offSet: offSet)
             .decode(type: Launches.self, decoder: JSONDecoder())
-            .compactMap {
+            .compactMap { [weak self] in
+                guard let self = self else { return nil }
                 return self.mapLaunches(launches: $0)
             }
             .replaceError(with: [])
