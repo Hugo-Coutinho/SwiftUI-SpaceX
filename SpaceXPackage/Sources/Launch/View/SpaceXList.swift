@@ -16,6 +16,28 @@ public struct SpaceXList: View {
     @State public var inputText = ""
     @State public var pickerSelected: AppBarScopedButtons = AppBarScopedButtons.asc
     
+    // MARK: - VIEWS -
+    var CompanySection: some View {
+        Section(header: Text("Company")) {
+            CompanySectionView(viewModel: companyViewModel)
+        }
+    }
+    
+    var LaunchSection: some View {
+        Section(header: Text("Launch")) {
+            let launches = launchViewModel.getLaunches(by: inputText, and: pickerSelected)
+            ForEach(launches.indices, id: \.self) { launchIndex in
+                let launch = launches[launchIndex]
+                LaunchSectionView(launch: launch)
+                    .onAppear {
+                        if launchIndex == launches.count - 1 {
+                            launchViewModel.loadMoreContentIfNeeded(isUserTexting: !inputText.isEmpty)
+                        }
+                    }
+            }
+        }
+    }
+    
     // MARK: - CONSTRUCTOR -
     public init(launchViewModel: LaunchViewModel, companyViewModel: CompanyViewModel) {
         self.launchViewModel = launchViewModel
@@ -27,22 +49,8 @@ public struct SpaceXList: View {
             AppBarView(inputText: $inputText, pickerSelected: $pickerSelected)
                 .navigationBarHidden(true)
             List {
-                Section(header: Text("Company")) {
-                    CompanySectionView(viewModel: companyViewModel)
-                }
-                
-                Section(header: Text("Launch")) {
-                    let launches = launchViewModel.getLaunches(by: inputText, and: pickerSelected)
-                    ForEach(launches.indices, id: \.self) { launchIndex in
-                        let launch = launches[launchIndex]
-                        LaunchSectionView(launch: launch)
-                            .onAppear {
-                                if launchIndex == launches.count - 1 {
-                                    launchViewModel.loadMoreContentIfNeeded(isUserTexting: !inputText.isEmpty)
-                                }
-                            }
-                    }
-                }
+                CompanySection
+                LaunchSection
             }
             if launchViewModel.isLoadingPage {
                 ProgressView()
