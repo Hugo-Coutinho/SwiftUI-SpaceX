@@ -21,7 +21,7 @@ public struct AppBarView: View {
     
     public var SearchBarView: some View {
         VStack {
-            TextField("Search something...", text: $inputText)
+            TextField("Search by release year...", text: $inputText)
                 .accessibilityIdentifier("SearchBar")
                 .padding(5)
                 .font(.system(size: 15))
@@ -31,7 +31,7 @@ public struct AppBarView: View {
     }
     
     public var PickerLaunchOrder: some View {
-        Picker("Choose course", selection: $pickerSelected) {
+        Picker("Choose sort", selection: $pickerSelected) {
             ForEach(segments, id:\.self) { segment in
                 Text(segment.rawValue)
                     .tag(segment)
