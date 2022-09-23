@@ -3,25 +3,155 @@
     <table>
         <tr>
             <td style="text-align: center">
-                    <img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/filtering.gif?raw=true" width="200" height="350"/>
+                    <img src="https://github.com/Hugo-Coutinho/SwiftUI-SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/filtering.gif?raw=true" width="250" height="450"/>
                 </a>
             </td>            
-            <td style="text-align: center">
-                    <img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/opening.gif?raw=true" width="200" height="350"/>
-                </a>
             </td>            
             <td style="text-align: center">
-                    <img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/scrolling.gif?raw=true" width="200" height="350"/>
+                    <img src="https://github.com/Hugo-Coutinho/SwiftUI-SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/scrolling.gif?raw=true" width="250" height="450"/>
                 </a>
-            </td>            
-        </tr>
-        <tr>         
-            <td style="text-align: center">
-                    <img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/sorting.gif?raw=true" width="200" height="350"/>
+            </td>    
+                   <td style="text-align: center">
+                    <img src="https://github.com/Hugo-Coutinho/SwiftUI-SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/sorting.gif?raw=true" width="250" height="450"/>
                 </a>
-            </td>              
-        </tr>
+            </td>    
+        </tr>   
     </table>
+</div>
+
+## SwiftUI
+
+New Apple Framework to create the UI, coding with Swift and now with declarative progamming paradigm. UIKit uses imperative programming paradigm, that means we need to handle manipulating the elements dragging and dropping. With SwiftUI declarative way, we just say what we want and it´s done.
+
+For example, building a form with UIKit might require you to control details like this:
+
+– Create a vertical UIStackView element.
+
+– Add two auto layout contraints (rules) to center it on the X-axis and Y-axis of the root view.
+
+– Create a UITextField element.
+
+– Add it into the UIStackView.
+
+And Now Building with SwiftUI Here’s what that looks like:
+
+– Hey SwiftUI, I want to group two textfields and a button in a vertical stack on the screen. SwiftUI will then go and create the elements and put them into the view and arrange them in a vertical stack.
+
+## Combine
+
+It´s a functional reactive programming, that means is driven by event. Working observing services and subscribing the result and automatically updating the UI regarding the new values.
+
+Nowadays a big group of developers have preference of working with MVVM and reactive way with RXSwift. So, with this new framework the trend is to move out to Combine.
+
+## Replacing VIPER to MVVM
+
+<div align="left">
+<img src="https://bloghugocoutinho.files.wordpress.com/2022/09/image-1.png"/>
+</div>
+
+
+I use to work with Viper that is my favourite design pattern + clean architecture. Using Builder to dependency injection and Domain to format data and prepare for the view.
+
+But SwiftUI in a declarative way and Combine in the reactive paradigm, VIPER it is far to be the best architecture to use. MVVM fits perfect for this occasion.
+
+<div align="left">
+<img src="https://bloghugocoutinho.files.wordpress.com/2022/09/image-2.png"/>
+</div>
+
+Basically, the changes are removing Presenter and Interactor layers and putting ViewModel making kind the same as Domain in VIPER, but now in the reactive flow.
+
+Serialising data and business logic It’s responsibility to Interactor, with MVVM, I can use a modifier to decode data into my entity and with small business logic, I make work inside the service Layer. Otherwise, I would create a Repository layer for this duty.
+
+## Working with Combine
+
+In a big picture explanation, the SwiftUI view will observe an object. And that object will subscribe to receive new values from API, and the object will decode the data and to map for the views to use it.
+
+<div align="left">
+<img src="https://bloghugocoutinho.files.wordpress.com/2022/09/image-3.png"/>
+</div>
+
+The image above shows that we still use URLSession but a bit different, instead of using completion with the Data or Error, we are returning AnyPublisher of Data or of Error. But for doing that we need to map the response and also the error if occur
+
+<div align="left">
+<img src="https://bloghugocoutinho.files.wordpress.com/2022/09/image-7.png"/>
+</div>
+
+In the ViewModel layer, we decode and map transforming the Entity into the ViewModel Object handling all the logic necessary. Afterwards, we assign it into a published property. That published property will be used in the UI.
+
+## SwiftUI Structure
+
+SwiftUI gives us an amazingly declarative approach to programming our user interfaces. Consider the following code:
+
+<div align="left">
+<img src="https://bloghugocoutinho.files.wordpress.com/2022/09/image-8.png"/>
+</div>
+
+Just Writing up the elements that you want to add and using the modifiers for each element to configure it.
+
+Remark on what is the difference between LazyVStack and VStack and when to use LazyStackView:
+
+VStack build all the sub views at once and Lazy build the sub views that will appear.
+
+**good case to use VStack:** Almost all the cases, when we have a number of sub views defined or at least we know that the number of sub views is not gigantic.
+
+**good case to use LazyVStack:** it’s certain that the number of sub views is big or is dynamic.
+
+## Property Wrapper
+
+A property wrapper it’s useful for when we have common definitions for some properties. Actually is not only common definitions, but with some settings that you have to make that repeat in some places.
+
+Example:
+
+```swift
+extension UserDefaults {
+
+    @UserDefault(key: "has_seen_app_introduction", defaultValue: false)
+    static var hasSeenAppIntroduction: Bool
+}
+```
+
+The @UserDefault statement is a call into the property wrapper. As you can see, we can give it a few parameters that are used to configure the property wrapper. There are several ways to interact with a property wrapper, like using the wrapped value and the projected value. You can also set up a property wrapper with injected properties.
+
+Here are explanation of the most used property wrappers in SwiftUI:
+
+**@State**
+
+Make able us to modify value inside a Struct. Structs are value type, so usually modifications are not allowed. Thus, putting @State before a property, we are moving out the storage from the struct.
+
+Another explanation is that swiftUI views are always rendering and updating, you have to declare @State if your value should´nt update with the view.
+
+**@Binding**
+
+To hold state of values from superView. It doesn’t work well if you have some few levels deep to pass data through, for this case we have a much better property wrapper called EnvironmentObject.
+
+**@EnvironmentObject**
+
+Useful for inject dependency into swiftUI and all the child views can access it. The object that you pass in an environment object will live in the current environment.
+
+**@Published**
+
+It´s the most important property wrapper of swiftUI. With it, we can create observable objects and reload the views to reflect those changes that is using the published.
+
+**@ObservedObject**
+
+ObservableObject it´s a protocol that enables us to observe objects in the swiftUI and combined with published property wrapper, we can listen every new value and update the UI.
+
+Normally my SwiftUI structs has dependency of ObservedObject viewModels, and for each var that I will use in the view, I have to declare as published.
+
+## Snapshot Testing
+
+Saving an image of your screen to define how your UI should be and test with your current Screen to prevent bad modifications.
+
+When an assertion first runs, a snapshot is automatically recorded to disk and the test will fail, printing out the file path of any newly-recorded reference.
+
+<div align="left">
+<img src="https://bloghugocoutinho.files.wordpress.com/2022/09/image-9.png"/>
+</div>
+
+Now re-run the test and will pass.
+
+<div align="left">
+<img src="https://bloghugocoutinho.files.wordpress.com/2022/09/image-10.png"/>
 </div>
 
 ## About this Project
@@ -41,25 +171,11 @@ Connect with me at [LinkedIn](https://www.linkedin.com/in/hugo-coutinho-aaa3b011
 Also, you can use this Project as you wish, be for study, be for make improvements or earn money with it!
 It's free!
 
-### Installing
-
-**Cloning the Repository**
-
-```swift
-$ git clone https://github.com/Hugo-Coutinho/SpaceX.git
-
-$ cd SpaceX
-```
-
-**Installing dependencies**
-
-```swift
-$ pod install
-```
-
 ## Built With
 
 - [Nuke](https://github.com/kean/Nuke) - Image Loading System
+
+- [KIF](https://github.com/kif-framework/KIF) - Keep It Functional - An iOS Functional Testing Framework
 
 
 ## Contributing
@@ -73,82 +189,3 @@ Connect with me at [LinkedIn](https://www.linkedin.com/in/hugo-coutinho-aaa3b011
 Check my development techniques: [My personal study annotations](http://bloghugocoutinho.wordpress.com)
 
 Thank you!
-
-## Explaining with diagrams how I'm using VIPE and clean architecture for this project
-
-### Decoupled ViewController with tableViewController and their sections
-Here in this case on the main screen, I'm printing the SpaceX information and a rocket launch list. In my navigationBar I put a search to be able to filter the launches by the year. 
-
-My inheritance with UIKit it's up to the TableviewController to do it. My ViewController extends TableViewController and their only responsibility is starting the sections using their builder and implements their output.
-With this design basically my ViewController became a section manager. Completely decoupled it doesn't know nothing about the sections and their logics. Using the section builder and communicating with sectionInput protocol ViewController it's isolated not having any reference directly to sections being able to delete/refactor/new features without breaking nothing into it.
-
-Unfortunately, I break some solid principles in this case creating a direct reference of my ViewController into LaunchSection, I did this faster solution that the LaunchSection be able to implement the search Bar delegates and then filtering the launches by year.A side solution that for me suit better not breaking any solid principles it is given the launch request logic and filtering all the stuff responsibility to ViewController itself, and only passing the launch list to the launchBuilder. That way I'll continue following the good principles
-
-<div align="center">
-<img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/view_controller_architecture.png?raw=true"/>
-</div>
-
-### Breaking VIPE into mini VIPE for each section
-Looking at the section landscape, his responsibility is to do everything related to launch and just that. This section doesn't know nothing about the tableview logic and the viewController management, it's isolated.
-
-Thus, launch section has to do the launch networking, business logic, formatting and presentation and rendering user events and updating launch data. And it does, using clean architecture and VIPE UI design pattern.
-
-As you can see below in the diagram, I like to work with a single cell for each state, so I have an error, a loading and a success, and the section does the state management.
-
-To respect the uncle Bob clean architecture design, I like to use the encapsulation pilar from OOP to isolate my application from external frameworks. Here I'm using Nuke pod to help me with load images and caches, but I don't want to my UI import external frameworks, because doing this I'm becoming a hostage to it. So I had created an Adapter isolating my UI to know Nuke and I'm using the adapter where I need. So in this way, I'm continuing using the benefits of Nuke and the same time not depending onto external applications.
-
-<div align="center">
-<img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/encapsulation_with_section_tableviewcell.png?raw=true"/>
-</div>
-
-### VIPE with diagrams
-I'm using protocol to follow the solid principles, for example, creating an output and input interface for each layer so the communication between layers are being with protocols, so presenter doesn't know the interactor and section, and the interactor doesn't know service and presenter. So we have a dependency inversion here.
-
-Using the communication between interactor and presenter for example, we have a presenter holding reference of interactorInput, and implements their output, in this case as you can see in the diagram below, I'm creating a retain cycle because this parent child relation the arc can't deallocated, so to avoid the retain cycle inside of *launchInteractor* I put the output reference as weak.
-
-About the layers communication I'm using closure and delegates, closure of the service to the interactor, and after that using output delegate to the rest.
-
-The launch data that I get from networking requests until to be ready into section, pass through some changes. Starting with service getting the Data and passing by closure to the interactor, interactor do the job of decoding into an entity and then passing to the presenter, presenter now gets the entity and pass to the section a domain instance with all business logic resolved. So the section and the cells only know the domain and nothing else.
-
-About the domain, I like to work with a concrete domain reference and a domain for each mini vipe design pattern, but the cons of this approach it that isn't able to reuse this domain in others feature. Domain for me has all the business logic and he can resolve itself transforming the entity into a viewdata.
-
-<div align="center">
-<img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/vipe.png?raw=true"/>
-</div>
-
-### Repository structure
-In this application I created a BaseRequest that access the URLSession for networking, this BaseRequest it's a reusable service with an input protocol, so every service has reference to the input protocol and not the concrete BaseRequest following the dependency inversion principle. They responsibility it's only getting the data and pass by a closure.
-
-<div align="center">
-<img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/Repository_structure.png?raw=true"/>
-</div>
-
-### My Clean Architecture
-Following uncle Bob clean architecture design we have 4 rings, one inside the other:
-1. The blue one it's supposed to be exclusive for UI and external Frameworks
-2. The green one, it's That when we create our view Controller and our adapter from external libraries
-3. The orange one, it's responsible for all the application business logic
-4. The smaller yellow ring supposed to be the entities
-
-Now looking from the smallest ring to the biggest the only one that can know entity should be the use case, it means viewController cannot know entity only the domain.
-Our controllers and adapters has a reference from use case (domain) totally don't knowing business logic and data formatting.
-
-Using encapsulation I'm protecting my application for external stuffs as you can see the blue biggest ring we have external but inside of it, I'm using an adapter so if something happens to the library or if I just want to not use it anymore I can simply remove from the project and anything won't gonna break or change.
-At below you can see the rings with my solution.
-
-<div align="center">
-<img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/clean_architecture.png?raw=true"/>
-</div>
-
-### The solid principles power for unit testing as well
-How can I do unit testing for all the VIPE layers with fixture data?
-Simple, with one interface, following open and closed principle that says open for extension but closed for modifications. I can extend my BaseRequest to the error scenario and for the success scenario. For the success I can just get the Json and start the test flow.
-
-Take a look at the diagram below and you can see that I'm using the BaseRequestInput as a boundary for the spies and the concrete BaseRequest.
-
-<div align="center">
-<img src="https://github.com/Hugo-Coutinho/SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/base_request_architecture.png?raw=true"/>
-</div>
-
-
-
