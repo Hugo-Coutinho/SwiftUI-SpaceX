@@ -7,11 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		098F8328277A3FF000E89652 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F8327277A3FF000E89652 /* AppDelegate.swift */; };
-		098F832A277A3FF000E89652 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098F8329277A3FF000E89652 /* SceneDelegate.swift */; };
-		098F832F277A3FF000E89652 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F832D277A3FF000E89652 /* Main.storyboard */; };
 		098F8331277A3FF300E89652 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 098F8330277A3FF300E89652 /* Assets.xcassets */; };
-		098F8334277A3FF300E89652 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 098F8332277A3FF300E89652 /* LaunchScreen.storyboard */; };
 		9A2020D628A8164A00439E0D /* Launch in Frameworks */ = {isa = PBXBuildFile; productRef = 9A2020D528A8164A00439E0D /* Launch */; };
 		9A383C6628DE022000C63F30 /* scrolling.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9A383C6328DE021F00C63F30 /* scrolling.gif */; };
 		9A383C6728DE022000C63F30 /* sorting.gif in Resources */ = {isa = PBXBuildFile; fileRef = 9A383C6428DE021F00C63F30 /* sorting.gif */; };
@@ -23,8 +19,6 @@
 		9A5B2C2B28CF8188000D119D /* KIF in Frameworks */ = {isa = PBXBuildFile; productRef = 9A5B2C2A28CF8188000D119D /* KIF */; };
 		9A5B2C2D28CF8274000D119D /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B2C2C28CF8274000D119D /* XCTestCaseExtension.swift */; };
 		9A5B2C2F28CF896E000D119D /* CompanyViewSnapshotTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5B2C2E28CF896E000D119D /* CompanyViewSnapshotTesting.swift */; };
-		9A621A7428CF309E001A03DB /* HomeBuilderInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A621A7228CF309E001A03DB /* HomeBuilderInput.swift */; };
-		9A621A7528CF309E001A03DB /* HomeBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A621A7328CF309E001A03DB /* HomeBuilder.swift */; };
 		9AB2743628A9B57500B7F614 /* company_info_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742128A9B57500B7F614 /* company_info_data.json */; };
 		9AB2743728A9B57500B7F614 /* launch_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742228A9B57500B7F614 /* launch_data.json */; };
 		9AB2743D28A9B57500B7F614 /* LaunchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2742C28A9B57500B7F614 /* LaunchServiceTests.swift */; };
@@ -33,6 +27,7 @@
 		9AB2744628A9B57A00B7F614 /* launch_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742228A9B57500B7F614 /* launch_data.json */; };
 		9AB2744728A9B57C00B7F614 /* company_info_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742128A9B57500B7F614 /* company_info_data.json */; };
 		9AE13DCA28CB7F0D00DFFAC7 /* CompanyViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE13DC928CB7F0D00DFFAC7 /* CompanyViewModelTests.swift */; };
+		A6C324902B0E7CD900F1E5B7 /* SpaceXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,11 +56,7 @@
 
 /* Begin PBXFileReference section */
 		098F8324277A3FF000E89652 /* SpaceX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceX.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		098F8327277A3FF000E89652 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		098F8329277A3FF000E89652 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		098F832E277A3FF000E89652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		098F8330277A3FF300E89652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		098F8333277A3FF300E89652 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		098F8335277A3FF300E89652 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D2E4DE27AB4CCF00300A38 /* KIFSpaceXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KIFSpaceXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A383C6328DE021F00C63F30 /* scrolling.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = scrolling.gif; sourceTree = "<group>"; };
@@ -78,8 +69,6 @@
 		9A5B2C2428CF6BB3000D119D /* AppBarSnapshotTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBarSnapshotTesting.swift; sourceTree = "<group>"; };
 		9A5B2C2C28CF8274000D119D /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
 		9A5B2C2E28CF896E000D119D /* CompanyViewSnapshotTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewSnapshotTesting.swift; sourceTree = "<group>"; };
-		9A621A7228CF309E001A03DB /* HomeBuilderInput.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBuilderInput.swift; sourceTree = "<group>"; };
-		9A621A7328CF309E001A03DB /* HomeBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeBuilder.swift; sourceTree = "<group>"; };
 		9AB2740B28A9B42700B7F614 /* SpaceXTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AB2742128A9B57500B7F614 /* company_info_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = company_info_data.json; sourceTree = "<group>"; };
 		9AB2742228A9B57500B7F614 /* launch_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = launch_data.json; sourceTree = "<group>"; };
@@ -88,6 +77,7 @@
 		9AB2743328A9B57500B7F614 /* CompanyServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CompanyServiceTests.swift; sourceTree = "<group>"; };
 		9AB2747D28A9B93A00B7F614 /* SpaceXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AE13DC928CB7F0D00DFFAC7 /* CompanyViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewModelTests.swift; sourceTree = "<group>"; };
+		A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,12 +141,9 @@
 		098F8326277A3FF000E89652 /* SpaceX */ = {
 			isa = PBXGroup;
 			children = (
-				9A621A7128CF308B001A03DB /* AppBuilder */,
-				098F83BF277A40A500E89652 /* AppStart */,
+				A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */,
 				098F839D277A409F00E89652 /* Core */,
-				098F832D277A3FF000E89652 /* Main.storyboard */,
 				098F8330277A3FF300E89652 /* Assets.xcassets */,
-				098F8332277A3FF300E89652 /* LaunchScreen.storyboard */,
 				098F8335277A3FF300E89652 /* Info.plist */,
 			);
 			path = SpaceX;
@@ -176,15 +163,6 @@
 				9AE275A928A7C35D0082F470 /* readme gifs */,
 			);
 			path = Helper;
-			sourceTree = "<group>";
-		};
-		098F83BF277A40A500E89652 /* AppStart */ = {
-			isa = PBXGroup;
-			children = (
-				098F8329277A3FF000E89652 /* SceneDelegate.swift */,
-				098F8327277A3FF000E89652 /* AppDelegate.swift */,
-			);
-			path = AppStart;
 			sourceTree = "<group>";
 		};
 		9A5B2C2028CF6B39000D119D /* UITests */ = {
@@ -212,15 +190,6 @@
 				9A5B2C2E28CF896E000D119D /* CompanyViewSnapshotTesting.swift */,
 			);
 			path = Tests;
-			sourceTree = "<group>";
-		};
-		9A621A7128CF308B001A03DB /* AppBuilder */ = {
-			isa = PBXGroup;
-			children = (
-				9A621A7328CF309E001A03DB /* HomeBuilder.swift */,
-				9A621A7228CF309E001A03DB /* HomeBuilderInput.swift */,
-			);
-			path = AppBuilder;
 			sourceTree = "<group>";
 		};
 		9A678AFB28A675A200917A95 /* Frameworks */ = {
@@ -445,10 +414,8 @@
 				9A383C6628DE022000C63F30 /* scrolling.gif in Resources */,
 				9AB2744628A9B57A00B7F614 /* launch_data.json in Resources */,
 				9A383C6728DE022000C63F30 /* sorting.gif in Resources */,
-				098F8334277A3FF300E89652 /* LaunchScreen.storyboard in Resources */,
 				098F8331277A3FF300E89652 /* Assets.xcassets in Resources */,
 				9A383C6828DE022000C63F30 /* filtering.gif in Resources */,
-				098F832F277A3FF000E89652 /* Main.storyboard in Resources */,
 				9AB2744728A9B57C00B7F614 /* company_info_data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,10 +450,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A621A7528CF309E001A03DB /* HomeBuilder.swift in Sources */,
-				098F8328277A3FF000E89652 /* AppDelegate.swift in Sources */,
-				098F832A277A3FF000E89652 /* SceneDelegate.swift in Sources */,
-				9A621A7428CF309E001A03DB /* HomeBuilderInput.swift in Sources */,
+				A6C324902B0E7CD900F1E5B7 /* SpaceXApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -539,25 +503,6 @@
 			targetProxy = 9AB2748128A9B93B00B7F614 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		098F832D277A3FF000E89652 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				098F832E277A3FF000E89652 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		098F8332277A3FF300E89652 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				098F8333277A3FF300E89652 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		098F834C277A3FF400E89652 /* Debug */ = {
@@ -683,11 +628,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D8SS8BRWWP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpaceX/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -710,11 +655,11 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = D8SS8BRWWP;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SpaceX/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

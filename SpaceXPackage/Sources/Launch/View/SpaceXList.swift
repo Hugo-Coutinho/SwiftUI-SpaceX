@@ -11,8 +11,8 @@ import UIComponent
 
 public struct SpaceXList: View {
     
-    @ObservedObject public var launchViewModel: LaunchViewModel
-    @ObservedObject public var companyViewModel: CompanyViewModel
+    @EnvironmentObject public var launchViewModel: LaunchViewModel
+    @EnvironmentObject public var companyViewModel: CompanyViewModel
     @State public var inputText = ""
     @State public var pickerSelected: AppBarScopedButtons = AppBarScopedButtons.asc
     
@@ -39,10 +39,7 @@ public struct SpaceXList: View {
     }
     
     // MARK: - CONSTRUCTOR -
-    public init(launchViewModel: LaunchViewModel, companyViewModel: CompanyViewModel) {
-        self.launchViewModel = launchViewModel
-        self.companyViewModel = companyViewModel
-    }
+    public init() {}
     
     public var body: some View {
         VStack {
@@ -61,8 +58,9 @@ public struct SpaceXList: View {
 
 struct SwiftUISpaceXListView_Previews: PreviewProvider {
     static var previews: some View {
-        SpaceXList(launchViewModel: getLaunchViewModel(),
-                   companyViewModel: getCompanyViewModel())
+        SpaceXList()
+            .environmentObject(getLaunchViewModel())
+            .environmentObject(getCompanyViewModel())
         .previewLayout(.device)
     }
     

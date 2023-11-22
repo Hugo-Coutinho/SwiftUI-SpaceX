@@ -11,16 +11,9 @@ import Network
 import SwiftUI
 import Core
 
-class LaunchBuilder: LaunchBuilderInput {
+public class LaunchBuilder: LaunchBuilderInput {
     // MARK: - CONSTRUCTOR -
     public init(){}
-    
-    public func make() -> UIViewController {
-        let service = LaunchService(baseRequest: BaseRequest())
-        let launchViewModel = LaunchViewModel(service: service, dateHelper: DateHelper())
-        return UIHostingController(rootView: SpaceXList(launchViewModel: launchViewModel,
-                                                        companyViewModel: CompanySectionBuilder().makeViewModel()))
-    }
     
     public func makeViewModel() -> LaunchViewModel {
         let service = LaunchService(baseRequest: BaseRequest())
