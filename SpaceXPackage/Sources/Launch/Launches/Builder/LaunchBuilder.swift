@@ -15,8 +15,8 @@ public class LaunchBuilder: LaunchBuilderInput {
     // MARK: - CONSTRUCTOR -
     public init(){}
     
-    public func makeViewModel() -> LaunchViewModel {
+    public func makeModel() -> LaunchModel {
         let service = LaunchService(baseRequest: BaseRequest())
-        return LaunchViewModel(service: service, dateHelper: DateHelper())
+        return LaunchModel(service: service, dateHelper: DateHelper())
     }
 }

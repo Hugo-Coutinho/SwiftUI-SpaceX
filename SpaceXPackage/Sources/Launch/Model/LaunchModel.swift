@@ -11,7 +11,7 @@ import Network
 import Core
 import Combine
 
-public class LaunchViewModel: ObservableObject {
+public class LaunchModel: ObservableObject {
     // MARK: - PROPERTIES -
     @Published public var launches: LaunchItems = []
     @Published public var isLoadingPage = false
@@ -64,7 +64,7 @@ public class LaunchViewModel: ObservableObject {
 }
 
 // MARK: - ASSISTANT METHODS -
-extension LaunchViewModel {
+extension LaunchModel {
     private func fetchingLaunches(offSet: Int) -> AnyPublisher<LaunchItems, Never> {
         return service.fetchLaunches(offSet: offSet)
             .decode(type: Launches.self, decoder: JSONDecoder())

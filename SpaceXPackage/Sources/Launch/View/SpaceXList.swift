@@ -11,27 +11,27 @@ import UIComponent
 
 public struct SpaceXList: View {
     
-    @EnvironmentObject public var launchViewModel: LaunchViewModel
-    @EnvironmentObject public var companyViewModel: CompanyViewModel
+    @EnvironmentObject public var launchModel: LaunchModel
+    @EnvironmentObject public var companyModel: CompanyModel
     @State public var inputText = ""
     @State public var pickerSelected: AppBarScopedButtons = AppBarScopedButtons.asc
     
     // MARK: - VIEWS -
     var CompanySection: some View {
         Section(header: Text("Company")) {
-            CompanySectionView(viewModel: companyViewModel)
+            CompanySectionView(model: companyModel)
         }
     }
     
     var LaunchSection: some View {
         Section(header: Text("Launch")) {
-            let launches = launchViewModel.getLaunches(by: inputText, and: pickerSelected)
+            let launches = launchModel.getLaunches(by: inputText, and: pickerSelected)
             ForEach(launches.indices, id: \.self) { launchIndex in
                 let launch = launches[launchIndex]
                 LaunchSectionView(launch: launch)
                     .onAppear {
                         if launchIndex == launches.count - 1 {
-                            launchViewModel.loadMoreContentIfNeeded(isUserTexting: !inputText.isEmpty)
+                            launchModel.loadMoreContentIfNeeded(isUserTexting: !inputText.isEmpty)
                         }
                     }
             }
@@ -49,7 +49,7 @@ public struct SpaceXList: View {
                 CompanySection
                 LaunchSection
             }
-            if launchViewModel.isLoadingPage {
+            if launchModel.isLoadingPage {
                 ProgressView()
             }
         }
@@ -59,23 +59,23 @@ public struct SpaceXList: View {
 struct SwiftUISpaceXListView_Previews: PreviewProvider {
     static var previews: some View {
         SpaceXList()
-            .environmentObject(getLaunchViewModel())
-            .environmentObject(getCompanyViewModel())
+            .environmentObject(getLaunchModel())
+            .environmentObject(getCompanyModel())
         .previewLayout(.device)
     }
     
-    static func getCompanyViewModel() -> CompanyViewModel {
-        let viewModel = CompanySectionBuilder().makeViewModel()
-        viewModel.info = """
+    static func getCompanyModel() -> CompanyModel {
+        let model = CompanySectionBuilder().makeModel()
+        model.info = """
 SpaceX was founded by Elon Musk in 2002.
 
  It has now 7000 employees, 3 Company sites, and is valued at USD $27500000000.00
 """
-        return viewModel
+        return model
     }
     
-    static func getLaunchViewModel() -> LaunchViewModel {
-        let viewModel = LaunchBuilder().makeViewModel()
-        return viewModel
+    static func getLaunchModel() -> LaunchModel {
+        let model = LaunchBuilder().makeModel()
+        return model
     }
 }

@@ -15,9 +15,9 @@ public final class CompanySectionBuilder: CompanySectionBuilderInput {
     // MARK: - CONSTRUCTOR -
     public init(){}
     
-    public func makeViewModel() -> CompanyViewModel {
+    public func makeModel() -> CompanyModel {
         let service = CompanyService(baseRequest: BaseRequest())
-        return CompanyViewModel(service: service)
+        return CompanyModel(service: service)
     }
 }
 

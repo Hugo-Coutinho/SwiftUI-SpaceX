@@ -13,7 +13,7 @@ import Combine
 
 public typealias CompanyInfo = String
 
-public class CompanyViewModel: ObservableObject {
+public class CompanyModel: ObservableObject {
     // MARK: - PROPERTIES -
     @Published public var info: CompanyInfo = ""
     
@@ -26,7 +26,7 @@ public class CompanyViewModel: ObservableObject {
 }
 
 // MARK: - ASSISTANT METHODS -
-extension CompanyViewModel {
+extension CompanyModel {
     private func mapInfoMessage(info: InfoEntity) -> CompanyInfo {
         return "\(info.name ?? "") was founded by \(info.founder ?? "") in \(info.founded ?? 0).\n\n It has now \(info.employees ?? 0) employees, \(info.launchSites ?? 0) Company sites, and is valued at USD \(String(format: "$%.02f", info.valuation ?? 0))"
     }

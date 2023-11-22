@@ -12,7 +12,7 @@ import Launch
 import Combine
 import Network
 
-class LaunchViewModelTests: XCTestCase {
+class LaunchModelTests: XCTestCase {
     private var cancellables: Set<AnyCancellable>!
     private lazy var dateHelper = DateHelper()
     
@@ -23,7 +23,7 @@ class LaunchViewModelTests: XCTestCase {
     
     func test_shouldMatchDate() {
         // 1. GIVEN
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         let expected = "2006/03/24 - 10:30 PM"
         
         // 2. WHEN
@@ -35,7 +35,7 @@ class LaunchViewModelTests: XCTestCase {
     
     func test_fields_notEmpty() {
         // 1. GIVEN
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         
         // 2. WHEN
         
@@ -51,7 +51,7 @@ class LaunchViewModelTests: XCTestCase {
     
     func test_shouldMatchRocket() {
         // 1. GIVEN
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         let expected = "Falcon 1 / Merlin A"
         
         // 2. WHEN
@@ -62,7 +62,7 @@ class LaunchViewModelTests: XCTestCase {
     
     func test_shouldMatchDays_withSince() {
         // 1. GIVEN
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         let currentDateAsString = dateHelper.getDateString(date: Date())
         let expected = "\(currentDateAsString) - 2006/03/24"
         
@@ -75,7 +75,7 @@ class LaunchViewModelTests: XCTestCase {
     
     func test_shouldMatchDays_withFromNow() {
         // 1. GIVEN
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         let currentDateAsString = dateHelper.getDateString(date: Date())
         let expected = "2023/04/10 - \(currentDateAsString)"
         
@@ -90,7 +90,7 @@ class LaunchViewModelTests: XCTestCase {
     func test_shouldMatchDaysDesc_withFromNow() {
         // 1. GIVEN
         let launchDateAsString = "2023-04-10T04:00:00.000Z"
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         let launchDate = dateHelper.fromUTCToDate(dateString: launchDateAsString) ?? Date()
         let dayExpected = "\(abs(dateHelper.numberOfDaysBetween(launchDate, and: Date())))"
         let expected = "\(dayExpected) days\n from now:"
@@ -105,7 +105,7 @@ class LaunchViewModelTests: XCTestCase {
     func test_shouldMatchDaysDesc_withSinceNow() {
         // 1. GIVEN
         let launchDateAsString = "2006-03-24T22:30:00.000Z"
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         let launchDate = dateHelper.fromUTCToDate(dateString: launchDateAsString) ?? Date()
         let dayExpected = "\(abs(dateHelper.numberOfDaysBetween(launchDate, and: Date())))"
         let expected = "\(dayExpected) days\n since now:"
@@ -119,7 +119,7 @@ class LaunchViewModelTests: XCTestCase {
     
     func test_shouldFilter_2007Launches() {
         // 1. GIVEN
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         let expected = "2007"
         let expectedName = "CRS-1"
         
@@ -134,7 +134,7 @@ class LaunchViewModelTests: XCTestCase {
     
     func test_shouldSortYear_ascendingOrder() {
         // 1. GIVEN
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         let firstItemExpected = "2006"
         let secondThirdItemsExpected = "2007"
         let fourthFifthItemExpected = "2008"
@@ -155,7 +155,7 @@ class LaunchViewModelTests: XCTestCase {
     
     func test_shouldSortYear_descendingOrder() {
         // 1. GIVEN
-        let sut: LaunchViewModel = makeSUT()
+        let sut: LaunchModel = makeSUT()
         let firstItemExpected = "2012"
         let secondThirdItemsExpected = "2010"
         let fourthItemExpected = "2009"
@@ -185,16 +185,16 @@ class LaunchViewModelTests: XCTestCase {
 }
 
 // MARK: - MAKE SUT -
-extension LaunchViewModelTests {
-    private func makeSUT() -> LaunchViewModel {
+extension LaunchModelTests {
+    private func makeSUT() -> LaunchModel {
         let baseRequestSpy = BaseRequestSuccessHandlerSpy(service: .launch)
         let service = LaunchService(baseRequest: baseRequestSpy)
-        return LaunchViewModel(service: service, dateHelper: dateHelper)
+        return LaunchModel(service: service, dateHelper: dateHelper)
     }
     
-    private func makeSUTErrorHandler() -> LaunchViewModel {
+    private func makeSUTErrorHandler() -> LaunchModel {
         let baseRequestSpy = BaseRequestErrorHandlerSpy()
         let service = LaunchService(baseRequest: baseRequestSpy)
-        return LaunchViewModel(service: service, dateHelper: dateHelper)
+        return LaunchModel(service: service, dateHelper: dateHelper)
     }
 }

@@ -9,6 +9,6 @@ import Foundation
 import SwiftUI
 
 public protocol CompanySectionBuilderInput {
-    func makeViewModel() -> CompanyViewModel
+    func makeModel() -> CompanyModel
 }
 

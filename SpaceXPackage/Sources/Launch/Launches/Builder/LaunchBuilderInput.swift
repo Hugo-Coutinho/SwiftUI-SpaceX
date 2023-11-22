@@ -9,5 +9,5 @@ import Foundation
 import SwiftUI
 
 protocol LaunchBuilderInput {
-    func makeViewModel() -> LaunchViewModel
+    func makeModel() -> LaunchModel
 }

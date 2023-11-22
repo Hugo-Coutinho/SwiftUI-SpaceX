@@ -13,8 +13,8 @@ struct SpaceXApp: App {
     var body: some Scene {
         WindowGroup {
             SpaceXList()
-                .environmentObject(LaunchBuilder().makeViewModel())
-                .environmentObject(CompanySectionBuilder().makeViewModel())
+                .environmentObject(LaunchBuilder().makeModel())
+                .environmentObject(CompanySectionBuilder().makeModel())
         }
     }
 }

@@ -14,8 +14,8 @@ import SwiftUI
 class CompanyViewSnapshotTesting: XCTestCase {
     
     func test_shouldReturn_infoMessage() {
-        let viewModel = CompanySectionBuilderSuccessHandlerSpy().makeViewModel()
-        let companyView = CompanySectionView(viewModel: viewModel)
+        let model = CompanySectionBuilderSuccessHandlerSpy().makeModel()
+        let companyView = CompanySectionView(model: model)
 
         assertSnapshot(matching: companyView.toVC(), as: .image)
     }

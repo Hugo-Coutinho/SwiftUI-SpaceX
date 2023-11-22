@@ -1,5 +1,5 @@
 //
-//  CompanyViewModelTests.swift
+//  CompanyModelTests.swift
 //  SpaceXTests
 //
 //  Created by Hugo on 09/09/2022.
@@ -10,7 +10,7 @@ import Combine
 import Launch
 import Network
 
-class CompanyViewModelTests: XCTestCase {
+class CompanyModelTests: XCTestCase {
     private var cancellables: Set<AnyCancellable>!
     
     override func setUp() {
@@ -20,8 +20,8 @@ class CompanyViewModelTests: XCTestCase {
     
     func test_VMNotRetained() {
         // 1. GIVEN
-        var sut: CompanyViewModel? = makeSUT()
-        let expectation = self.expectation(description: "CompanyViewModel")
+        var sut: CompanyModel? = makeSUT()
+        let expectation = self.expectation(description: "CompanyModel")
         
         // 2. WHEN
         sut?.$info
@@ -86,16 +86,16 @@ SpaceX was founded by Elon Musk in 2002.
 }
 
 // MARK: - MAKE SUT -
-extension CompanyViewModelTests {
-    private func makeSUT() -> CompanyViewModel {
+extension CompanyModelTests {
+    private func makeSUT() -> CompanyModel {
         let baseRequestSpy = BaseRequestSuccessHandlerSpy(service: .company)
         let service = CompanyService(baseRequest: baseRequestSpy)
-        return CompanyViewModel(service: service)
+        return CompanyModel(service: service)
     }
     
-    private func makeSUTErrorHandler() -> CompanyViewModel {
+    private func makeSUTErrorHandler() -> CompanyModel {
         let baseRequestSpy = BaseRequestErrorHandlerSpy()
         let service = CompanyService(baseRequest: baseRequestSpy)
-        return CompanyViewModel(service: service)
+        return CompanyModel(service: service)
     }
 }

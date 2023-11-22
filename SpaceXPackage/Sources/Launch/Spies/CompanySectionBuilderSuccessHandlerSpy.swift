@@ -14,9 +14,9 @@ final class CompanySectionBuilderSuccessHandlerSpy: CompanySectionBuilderInput {
     // MARK: - CONSTRUCTOR -
     public init(){}
     
-    public func makeViewModel() -> CompanyViewModel {
+    public func makeModel() -> CompanyModel {
         let successBaseRequestSpy = BaseRequestSuccessHandlerSpy(service: .company)
         let service = CompanyService(baseRequest: successBaseRequestSpy)
-        return CompanyViewModel(service: service)
+        return CompanyModel(service: service)
     }
 }
