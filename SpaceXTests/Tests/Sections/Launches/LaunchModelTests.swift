@@ -77,7 +77,7 @@ class LaunchModelTests: XCTestCase {
         // 1. GIVEN
         let sut: LaunchModel = makeSUT()
         let currentDateAsString = dateHelper.getDateString(date: Date())
-        let expected = "2023/04/10 - \(currentDateAsString)"
+        let expected = "2025/04/10 - \(currentDateAsString)"
         
         
         // 2. WHEN
@@ -89,7 +89,7 @@ class LaunchModelTests: XCTestCase {
     
     func test_shouldMatchDaysDesc_withFromNow() {
         // 1. GIVEN
-        let launchDateAsString = "2023-04-10T04:00:00.000Z"
+        let launchDateAsString = "2025-04-10T04:00:00.000Z"
         let sut: LaunchModel = makeSUT()
         let launchDate = dateHelper.fromUTCToDate(dateString: launchDateAsString) ?? Date()
         let dayExpected = "\(abs(dateHelper.numberOfDaysBetween(launchDate, and: Date())))"
