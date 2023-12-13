@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Network
+import HGNetworkLayer
 import Core
 import Combine
 

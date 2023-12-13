@@ -27,6 +27,7 @@
 		9AB2744628A9B57A00B7F614 /* launch_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742228A9B57500B7F614 /* launch_data.json */; };
 		9AB2744728A9B57C00B7F614 /* company_info_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742128A9B57500B7F614 /* company_info_data.json */; };
 		9AE13DCA28CB7F0D00DFFAC7 /* CompanyModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE13DC928CB7F0D00DFFAC7 /* CompanyModelTests.swift */; };
+		A6A8ACA82B2A4F3900DFB86F /* HGNetworkLayer in Frameworks */ = {isa = PBXBuildFile; productRef = A6A8ACA72B2A4F3900DFB86F /* HGNetworkLayer */; };
 		A6C324902B0E7CD900F1E5B7 /* SpaceXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6A8ACA82B2A4F3900DFB86F /* HGNetworkLayer in Frameworks */,
 				9A2020D628A8164A00439E0D /* Launch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,6 +292,7 @@
 			name = SpaceX;
 			packageProductDependencies = (
 				9A2020D528A8164A00439E0D /* Launch */,
+				A6A8ACA72B2A4F3900DFB86F /* HGNetworkLayer */,
 			);
 			productName = SpaceX;
 			productReference = 098F8324277A3FF000E89652 /* SpaceX.app */;
@@ -393,6 +396,7 @@
 			packageReferences = (
 				9A5B2C1B28CF6668000D119D /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				9A5B2C2928CF8188000D119D /* XCRemoteSwiftPackageReference "KIF" */,
+				A660965F2B2A41B800446E11 /* XCRemoteSwiftPackageReference "Network-Layer-Framework" */,
 			);
 			productRefGroup = 098F8325277A3FF000E89652 /* Products */;
 			projectDirPath = "";
@@ -556,7 +560,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -611,7 +615,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -635,6 +639,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -662,6 +667,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -859,6 +865,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		A660965F2B2A41B800446E11 /* XCRemoteSwiftPackageReference "Network-Layer-Framework" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Hugo-Coutinho/Network-Layer-Framework.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -875,6 +889,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9A5B2C2928CF8188000D119D /* XCRemoteSwiftPackageReference "KIF" */;
 			productName = KIF;
+		};
+		A6A8ACA72B2A4F3900DFB86F /* HGNetworkLayer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A660965F2B2A41B800446E11 /* XCRemoteSwiftPackageReference "Network-Layer-Framework" */;
+			productName = HGNetworkLayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

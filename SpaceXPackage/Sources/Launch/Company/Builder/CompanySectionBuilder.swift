@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Network
+import HGNetworkLayer
 import SwiftUI
 
 public final class CompanySectionBuilder: CompanySectionBuilderInput {

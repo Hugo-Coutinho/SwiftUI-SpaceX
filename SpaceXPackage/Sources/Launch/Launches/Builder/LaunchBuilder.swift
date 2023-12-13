@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Network
+import HGNetworkLayer
 import SwiftUI
 import Core
 

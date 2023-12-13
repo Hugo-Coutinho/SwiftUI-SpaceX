@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Network
+import HGNetworkLayer
 import Combine
 
 // MARK: - SERVICE INPUT PROTOCOL -

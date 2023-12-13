@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import HGNetworkLayer
 
 public class BaseRequestSuccessHandlerSpy: BaseRequestInput {
     // MARK: - ENUM -
@@ -32,7 +33,7 @@ public class BaseRequestSuccessHandlerSpy: BaseRequestInput {
         }
     }
     
-    public func fetch(url: URL) -> AnyPublisher<Data, APIError> {
+    public func fetchAnyPublisherWith(_ url: URL) -> AnyPublisher<Data, HGNetworkLayer.APIError> {
         if let data = readLocalFile(forName: getLocalFileNameByService()) {
             return Just(data)
                 .mapError { error in
@@ -75,7 +76,7 @@ extension BaseRequestSuccessHandlerSpy {
 public class BaseRequestErrorHandlerSpy: BaseRequestInput {
     public init() {}
         
-    public func fetch(url: URL) -> AnyPublisher<Data, APIError> {
+    public func fetchAnyPublisherWith(_ url: URL) -> AnyPublisher<Data, HGNetworkLayer.APIError> {
         return Fail(error: APIError.unknown).eraseToAnyPublisher()
     }
     

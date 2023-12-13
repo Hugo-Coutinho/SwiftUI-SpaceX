@@ -7,7 +7,7 @@
 
 import SwiftUI
 import Core
-import Network
+import HGNetworkLayer
 
 final class CompanySectionBuilderSuccessHandlerSpy: CompanySectionBuilderInput {
     

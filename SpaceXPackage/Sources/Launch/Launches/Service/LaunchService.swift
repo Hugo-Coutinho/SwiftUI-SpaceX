@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Network
+import HGNetworkLayer
 import Combine
 
 public class LaunchService: LaunchServiceInput {
@@ -28,6 +28,6 @@ public class LaunchService: LaunchServiceInput {
         let urlString = APIConstant.baseURLString + launch + String(format: launchQueryString, "\(offSet)")
         guard let urlComponents = URLComponents(string: urlString),
               let url = urlComponents.url else { return Fail(error: APIError.unknown).eraseToAnyPublisher() }
-        return baseRequest.fetch(url: url)
+        return baseRequest.fetchAnyPublisherWith(url)
     }
 }

@@ -6,15 +6,12 @@ import PackageDescription
 let package = Package(
     name: "SpaceXPackage",
     platforms: [
-        .iOS("15.0")
+        .iOS("16.0")
     ],
     products: [
         .library(
             name: "Core",
             targets: ["Core"]),
-        .library(
-            name: "Network",
-            targets: ["Network"]),
         .library(
             name: "UIComponent",
             targets: ["UIComponent"]),
@@ -30,9 +27,6 @@ let package = Package(
             name: "Core",
             dependencies: []),
         .target(
-            name: "Network",
-            dependencies: []),
-        .target(
             name: "UIComponent",
             dependencies: [
                 "Core"
@@ -41,8 +35,7 @@ let package = Package(
             name: "Launch",
             dependencies: [
                 "NukeUI",
-                "UIComponent",
-                "Network"
+                "UIComponent"
             ]),
         .testTarget(name: "CoreTests", dependencies: ["Core"])
     ]
