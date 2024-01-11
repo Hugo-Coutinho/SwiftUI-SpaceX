@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "SpaceXPackage",
     platforms: [
-        .iOS("15.0")
+        .iOS("16.0")
     ],
     products: [
         .library(
