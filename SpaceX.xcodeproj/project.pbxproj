@@ -28,7 +28,6 @@
 		9AB2744728A9B57C00B7F614 /* company_info_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742128A9B57500B7F614 /* company_info_data.json */; };
 		9AE13DCA28CB7F0D00DFFAC7 /* CompanyModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE13DC928CB7F0D00DFFAC7 /* CompanyModelTests.swift */; };
 		A6C324902B0E7CD900F1E5B7 /* SpaceXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */; };
-		A6C3D0252B51B14B009F1310 /* HGNetworkLayer in Frameworks */ = {isa = PBXBuildFile; productRef = A6C3D0242B51B14B009F1310 /* HGNetworkLayer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +85,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A6C3D0252B51B14B009F1310 /* HGNetworkLayer in Frameworks */,
 				9A2020D628A8164A00439E0D /* Launch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,7 +290,6 @@
 			name = SpaceX;
 			packageProductDependencies = (
 				9A2020D528A8164A00439E0D /* Launch */,
-				A6C3D0242B51B14B009F1310 /* HGNetworkLayer */,
 			);
 			productName = SpaceX;
 			productReference = 098F8324277A3FF000E89652 /* SpaceX.app */;
@@ -396,7 +393,6 @@
 			packageReferences = (
 				9A5B2C1B28CF6668000D119D /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				9A5B2C2928CF8188000D119D /* XCRemoteSwiftPackageReference "KIF" */,
-				A6C3D0232B51B14B009F1310 /* XCRemoteSwiftPackageReference "Network-Layer-Framework" */,
 			);
 			productRefGroup = 098F8325277A3FF000E89652 /* Products */;
 			projectDirPath = "";
@@ -863,14 +859,6 @@
 				minimumVersion = 3.0.0;
 			};
 		};
-		A6C3D0232B51B14B009F1310 /* XCRemoteSwiftPackageReference "Network-Layer-Framework" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Hugo-Coutinho/Network-Layer-Framework.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.4;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -887,11 +875,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9A5B2C2928CF8188000D119D /* XCRemoteSwiftPackageReference "KIF" */;
 			productName = KIF;
-		};
-		A6C3D0242B51B14B009F1310 /* HGNetworkLayer */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A6C3D0232B51B14B009F1310 /* XCRemoteSwiftPackageReference "Network-Layer-Framework" */;
-			productName = HGNetworkLayer;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -7,7 +7,7 @@
 
 import Foundation
 import Combine
-import Network
+import HGNetworkLayer
 
 public protocol LaunchNetworkInput {
     // MARK: - INPUT METHODS -

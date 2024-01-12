@@ -6,12 +6,12 @@
 //
 
 import Foundation
-import Network
+import HGNetworkLayer
 import Combine
 
 public class LaunchPublisher: BaseRequest, LaunchNetworkInput {
     public func fetch(url: URL) -> AnyPublisher<Data, LaunchAPIError> {
-        return super.fetch(url: url)
+        return super.fetchAnyPublisherWith(url)
             .mapError { error in
                 if let failureReason = error.failureReason {
                     return LaunchAPIError(type: .errorReason(failureReason))

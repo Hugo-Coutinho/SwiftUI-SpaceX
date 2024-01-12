@@ -23,7 +23,8 @@ let package = Package(
             targets: ["Launch"])
     ],
     dependencies: [
-        .package(url: "https://github.com/kean/NukeUI", from: "0.8.3")
+        .package(url: "https://github.com/kean/NukeUI", from: "0.8.3"),
+        .package(url: "https://github.com/Hugo-Coutinho/Network-Layer-Framework", from: "1.0.4")
     ],
     targets: [
         .target(
@@ -42,7 +43,8 @@ let package = Package(
             dependencies: [
                 "NukeUI",
                 "UIComponent",
-                "Network"
+                "Network",
+                .product(name: "HGNetworkLayer", package: "Network-Layer-Framework")
             ]),
         .testTarget(name: "CoreTests", dependencies: ["Core"])
     ]
