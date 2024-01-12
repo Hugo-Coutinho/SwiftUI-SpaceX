@@ -13,9 +13,6 @@ let package = Package(
             name: "Core",
             targets: ["Core"]),
         .library(
-            name: "Network",
-            targets: ["Network"]),
-        .library(
             name: "UIComponent",
             targets: ["UIComponent"]),
         .library(
@@ -31,9 +28,6 @@ let package = Package(
             name: "Core",
             dependencies: []),
         .target(
-            name: "Network",
-            dependencies: []),
-        .target(
             name: "UIComponent",
             dependencies: [
                 "Core"
@@ -43,7 +37,6 @@ let package = Package(
             dependencies: [
                 "NukeUI",
                 "UIComponent",
-                "Network",
                 .product(name: "HGNetworkLayer", package: "Network-Layer-Framework")
             ]),
         .testTarget(name: "CoreTests", dependencies: ["Core"])
