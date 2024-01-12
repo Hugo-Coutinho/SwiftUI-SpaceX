@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Network
 import SwiftUI
 
 public final class CompanySectionBuilder: CompanySectionBuilderInput {
@@ -16,7 +15,7 @@ public final class CompanySectionBuilder: CompanySectionBuilderInput {
     public init(){}
     
     public func makeModel() -> CompanyModel {
-        let service = CompanyService(baseRequest: BaseRequest())
+        let service = CompanyService(baseRequest: LaunchPublisher())
         return CompanyModel(service: service)
     }
 }

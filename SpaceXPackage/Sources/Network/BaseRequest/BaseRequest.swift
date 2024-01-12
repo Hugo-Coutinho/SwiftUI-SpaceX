@@ -13,20 +13,29 @@ public enum ResultStatus {
     case success, error
 }
 
-public enum APIError: Error, LocalizedError {
-    case unknown, apiError(reason: String)
+open class APIError: Error, LocalizedError {
     
-    public var errorDescription: String? {
-        switch self {
-        case .unknown:
-            return "Unknown error"
-        case .apiError(let reason):
-            return reason
+    public let type: APIErrorCase
+    
+    public init(type: APIErrorCase) {
+        self.type = type
+    }
+    
+    public enum APIErrorCase: Error, LocalizedError {
+        case unknown, errorReason(_ reason: String)
+        
+        public var errorDescription: String? {
+            switch self {
+            case .unknown:
+                return "Unknown error"
+            case .errorReason(let reason):
+                return reason
+            }
         }
     }
 }
 
-public class BaseRequest: BaseRequestInput {
+open class BaseRequest: BaseRequestInput {
     
     // MARK: - INIT -
     public init() {}
@@ -52,7 +61,7 @@ public class BaseRequest: BaseRequestInput {
         return URLSession.DataTaskPublisher(request: request, session: .shared)
             .tryMap { data, response in
                 guard let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode else {
-                    throw APIError.unknown
+                    throw APIError.APIErrorCase.unknown
                 }
                 return data
             }
@@ -60,7 +69,7 @@ public class BaseRequest: BaseRequestInput {
                 if let error = error as? APIError {
                     return error
                 } else {
-                    return APIError.apiError(reason: error.localizedDescription)
+                    return APIError(type: .errorReason(error.localizedDescription))
                 }
             }
             .receive(on: RunLoop.main)

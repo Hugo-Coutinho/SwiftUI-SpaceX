@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Network
 
 struct CompanySectionView: View {
     

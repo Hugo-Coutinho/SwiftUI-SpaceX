@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Network
 import Combine
 
 public class LaunchService: LaunchServiceInput {
@@ -17,17 +16,17 @@ public class LaunchService: LaunchServiceInput {
     private let launchQueryString = "?limit=20&offset=%@"
     
     // MARK: - VARIABLES -
-    public var baseRequest: BaseRequestInput
+    public var baseRequest: LaunchNetworkInput
     
     // MARK: - CONSTRUCTOR -
-    public init(baseRequest: BaseRequestInput) {
+    public init(baseRequest: LaunchNetworkInput) {
         self.baseRequest = baseRequest
     }
     
-    public func fetchLaunches(offSet: Int) -> AnyPublisher<Data, APIError> {
+    public func fetchLaunches(offSet: Int) -> AnyPublisher<Data, LaunchAPIError> {
         let urlString = APIConstant.baseURLString + launch + String(format: launchQueryString, "\(offSet)")
         guard let urlComponents = URLComponents(string: urlString),
-              let url = urlComponents.url else { return Fail(error: APIError.unknown).eraseToAnyPublisher() }
+              let url = urlComponents.url else { return Fail(error: LaunchAPIError(type: .unknown)).eraseToAnyPublisher() }
         return baseRequest.fetch(url: url)
     }
 }

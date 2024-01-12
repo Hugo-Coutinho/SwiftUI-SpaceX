@@ -7,15 +7,14 @@
 //
 
 import Foundation
-import Network
 import Combine
 
 // MARK: - SERVICE INPUT PROTOCOL -
 public protocol CompanyServiceInput: AnyObject {
     // MARK: - VARIABLES -
-    var baseRequest: BaseRequestInput { get set }
+    var baseRequest: LaunchNetworkInput { get set }
 
     // MARK: - INPUT METHODS -
-    func fetchInfo() -> AnyPublisher<Data, APIError>
+    func fetchInfo() -> AnyPublisher<Data, LaunchAPIError>
 }
 

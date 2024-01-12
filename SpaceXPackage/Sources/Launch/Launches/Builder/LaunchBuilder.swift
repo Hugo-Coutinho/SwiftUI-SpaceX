@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Network
 import SwiftUI
 import Core
 
@@ -16,7 +15,7 @@ public class LaunchBuilder: LaunchBuilderInput {
     public init(){}
     
     public func makeModel() -> LaunchModel {
-        let service = LaunchService(baseRequest: BaseRequest())
+        let service = LaunchService(baseRequest: LaunchPublisher())
         return LaunchModel(service: service, dateHelper: DateHelper())
     }
 }
