@@ -17,6 +17,6 @@ class CompanyViewSnapshotTesting: XCTestCase {
         let model = CompanySectionBuilderSuccessHandlerSpy().makeModel()
         let companyView = CompanySectionView(model: model)
 
-        assertSnapshot(matching: companyView.toVC(), as: .image)
+        assertSnapshot(matching: companyView.toVC(), as: .image(on: .iPhoneSe))
     }
 }
