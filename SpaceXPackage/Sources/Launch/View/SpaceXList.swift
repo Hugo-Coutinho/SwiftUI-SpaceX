@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Core
+import HGCore
 import UIComponent
 
 public struct SpaceXList: View {

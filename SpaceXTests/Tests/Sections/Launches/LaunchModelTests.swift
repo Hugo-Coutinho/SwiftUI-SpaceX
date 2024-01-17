@@ -7,7 +7,7 @@
 //
 
 import XCTest
-import Core
+import HGCore
 import Launch
 import Combine
 

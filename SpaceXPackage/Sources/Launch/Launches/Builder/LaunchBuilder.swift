@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftUI
-import Core
+import HGCore
 
 public class LaunchBuilder: LaunchBuilderInput {
     // MARK: - CONSTRUCTOR -

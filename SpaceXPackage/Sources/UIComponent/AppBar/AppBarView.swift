@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Core
+import HGCore
 
 public struct AppBarView: View {
     @State private var showSearchBar = false

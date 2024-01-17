@@ -10,9 +10,6 @@ let package = Package(
     ],
     products: [
         .library(
-            name: "Core",
-            targets: ["Core"]),
-        .library(
             name: "UIComponent",
             targets: ["UIComponent"]),
         .library(
@@ -21,16 +18,14 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/kean/NukeUI", from: "0.8.3"),
-        .package(url: "https://github.com/Hugo-Coutinho/Network-Layer-Framework", from: "1.0.4")
+        .package(url: "https://github.com/Hugo-Coutinho/Network-Layer-Framework", from: "1.0.4"),
+        .package(url: "https://github.com/Hugo-Coutinho/SpaceX-Core", from: "1.0.2")
     ],
     targets: [
         .target(
-            name: "Core",
-            dependencies: []),
-        .target(
             name: "UIComponent",
             dependencies: [
-                "Core"
+                .product(name: "HGCore", package: "SpaceX-Core")
             ]),
         .target(
             name: "Launch",
@@ -38,7 +33,6 @@ let package = Package(
                 "NukeUI",
                 "UIComponent",
                 .product(name: "HGNetworkLayer", package: "Network-Layer-Framework")
-            ]),
-        .testTarget(name: "CoreTests", dependencies: ["Core"])
+            ])
     ]
 )

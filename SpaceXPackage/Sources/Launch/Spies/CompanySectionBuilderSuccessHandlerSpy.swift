@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Core
+import HGCore
 
 final class CompanySectionBuilderSuccessHandlerSpy: CompanySectionBuilderInput {
     
