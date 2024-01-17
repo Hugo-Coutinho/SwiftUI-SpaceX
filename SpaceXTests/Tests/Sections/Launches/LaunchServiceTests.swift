@@ -21,7 +21,7 @@ class LaunchServiceTests: XCTestCase {
     func test_ServiceNotRetained() {
         // 1. GIVEN
         var sut: LaunchServiceInput? = makeSUT()
-        let expectation = self.expectation(description: "CompanyService")
+        let expectation = self.expectation(description: "LaunchService")
         
         // 2. WHEN
         sut?.fetchLaunches(offSet: 0)

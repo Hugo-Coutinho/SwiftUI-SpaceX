@@ -14,7 +14,6 @@ struct SpaceXApp: App {
         WindowGroup {
             SpaceXList()
                 .environmentObject(LaunchBuilder().makeModel())
-                .environmentObject(CompanySectionBuilder().makeModel())
         }
     }
 }

@@ -9,7 +9,7 @@ import XCTest
 import SnapshotTesting
 import SwiftUI
 import UIComponent
-import Core
+import HGCore
 import KIF
 
 @testable import Launch

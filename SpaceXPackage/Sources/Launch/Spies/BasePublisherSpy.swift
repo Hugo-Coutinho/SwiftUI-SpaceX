@@ -12,7 +12,6 @@ import Combine
 public class BaseRequestSuccessHandlerSpy: LaunchNetworkInput {
     // MARK: - ENUM -
     public enum ServiceEnum {
-        case company
         case launch
     }
     
@@ -49,8 +48,6 @@ extension BaseRequestSuccessHandlerSpy {
         switch self.service {
         case .launch:
             return "launch_data"
-        case .company:
-            return "company_info_data"
         }
     }
     
