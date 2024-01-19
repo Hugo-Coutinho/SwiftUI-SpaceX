@@ -30,7 +30,7 @@ public class LaunchModel: ObservableObject {
     }
     
     // MARK: - EXPOSED METHODS -
-    public func getLaunches(by text: String, and sort: AppBarScopedButtons) -> LaunchItems {
+    public func getLaunches(text: String = "", sort: AppBarScopedButtons = .asc) -> LaunchItems {
         return launches
             .filter({
                 guard !text.isEmpty else { return true }
@@ -107,34 +107,6 @@ extension LaunchModel {
                 articleURL: articleURL
             )
         })
-    }
-    
-    private func getDaysDescriptionMessage(launchDate: Date, dateHelper: DateHelper) -> String {
-        let today = Date()
-        let totalDays = dateHelper.numberOfDaysBetween(launchDate, and: today)
-        if totalDays > 0 {
-            return "\(totalDays) days\n since now:"
-            
-        } else if totalDays == 0 {
-            return "now"
-        }
-        else {
-            return "\(abs(totalDays)) days\n from now:"
-        }
-    }
-    
-    private func getDaysMessage(launchDate: Date, dateHelper: DateHelper) -> String {
-        let today = Date()
-        let totalDays = dateHelper.numberOfDaysBetween(launchDate, and: today)
-        if totalDays > 0 {
-            return "\(dateHelper.getDateString(date: today)) - \(dateHelper.getDateString(date: launchDate))"
-            
-        } else if totalDays == 0 {
-            return "today"
-        }
-        else {
-            return "\(dateHelper.getDateString(date: launchDate)) - \(dateHelper.getDateString(date: today))"
-        }
     }
 }
 

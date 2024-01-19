@@ -18,7 +18,7 @@ public struct SpaceXList: View {
     // MARK: - VIEWS -    
     var LaunchSection: some View {
         Section(header: Text("Launch")) {
-            let launches = launchModel.getLaunches(by: inputText, and: pickerSelected)
+            let launches = launchModel.getLaunches(text: inputText, sort: pickerSelected)
             ForEach(launches.indices, id: \.self) { launchIndex in
                 let launch = launches[launchIndex]
                 LaunchSectionView(launch: launch)
