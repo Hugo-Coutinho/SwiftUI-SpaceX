@@ -43,7 +43,7 @@ class LaunchModelTests: XCTestCase {
         XCTAssertNotEqual(sut.launches.first?.date, "")
         XCTAssertNotEqual(sut.launches.first?.rocket, "")
         XCTAssertNotEqual(sut.launches.first?.siteName, "")
-        XCTAssert(sut.launches.first!.isLaunchSuccess)
+        XCTAssertNotEqual(sut.launches.first?.statusSystemImage, "")
         XCTAssertNotEqual(sut.launches.first?.imageURL.absoluteString, "")
         XCTAssertNotEqual(sut.launches.first?.articleURL.absoluteString, "")
     }

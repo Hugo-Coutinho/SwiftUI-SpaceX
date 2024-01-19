@@ -17,7 +17,7 @@ public class LaunchModel: ObservableObject {
     
     private var service: LaunchServiceInput
     private var dateHelper: DateHelper
-    private var currentPage = 1
+    private var currentPage = 0
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - CONSTRUCTOR -
@@ -101,7 +101,8 @@ extension LaunchModel {
                 date: date,
                 rocket: rocketName,
                 siteName: siteName,
-                isLaunchSuccess: isLaunchSuccess,
+                statusSystemImage: isLaunchSuccess ? "checkmark.circle" : "xmark.circle.fill",
+                status: isLaunchSuccess ? .success : .failed,
                 isUpcomingLaunch: dateHelper.isUpcomingDate(launchDate: launchDate),
                 imageURL: imageURL,
                 articleURL: articleURL
@@ -112,9 +113,16 @@ extension LaunchModel {
 
 // MARK: - LAUNCH ITEM -
 public struct Launch: Hashable {
-    public let missionName, date, rocket, siteName: String
-    public let isLaunchSuccess, isUpcomingLaunch: Bool
+    public let missionName, date, rocket, siteName,
+               statusSystemImage: String
+    public let status: LaunchStatus
+    public let isUpcomingLaunch: Bool
     public let imageURL, articleURL: URL
 }
 
 public typealias LaunchItems = [Launch]
+
+public enum LaunchStatus: String {
+    case success = "Successed"
+    case failed = "Failed"
+}
