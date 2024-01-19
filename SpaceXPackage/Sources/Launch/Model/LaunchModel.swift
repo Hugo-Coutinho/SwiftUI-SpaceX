@@ -34,14 +34,14 @@ public class LaunchModel: ObservableObject {
         return launches
             .filter({
                 guard !text.isEmpty else { return true }
-                return $0.launchYear.lowercased().contains(text.lowercased())
+                return $0.date.lowercased().contains(text.lowercased())
             })
             .sorted(by: { (lItem: Launch, rItem: Launch) -> Bool in
                 switch sort {
                 case .asc:
-                    return lItem.launchYear < rItem.launchYear
+                    return lItem.date < rItem.date
                 case .desc:
-                    return lItem.launchYear > rItem.launchYear
+                    return lItem.date > rItem.date
                 }
             })
     }
@@ -77,33 +77,35 @@ extension LaunchModel {
     
     private func mapLaunches(launches: Launches) -> LaunchItems {
         return launches.compactMap({ (current) -> Launch? in
-            guard let missionName = current.missionName,
-                  let launchDateString = current.launchDate,
-                  let year = current.launchYear,
-                  let launchDate = dateHelper.fromUTCToDate(dateString: launchDateString),
-                  let isLaunchSuccess = current.launchSuccess,
-                  let rocket = current.rocket,
-                  let rocketName = rocket.rocketName,
-                  let RocketType = rocket.rocketType,
-                  let link = current.links,
-                  let patch = link.missionPatch,
-                  let articleLink = link.articleUrl,
-                  let imageURL = URL(string: patch),
-                  let articleURL = URL(string: articleLink) else { return nil }
-            let days = getDaysMessage(launchDate: launchDate, dateHelper: dateHelper)
-            let daysDescription = getDaysDescriptionMessage(launchDate: launchDate, dateHelper: dateHelper)
-            let date = dateHelper.getUTCDayFormatted(dateString: launchDateString)
-            let rocketString = "\(rocketName) / \(RocketType)"
+            guard
+                let mission = current.mission,
+                let missionName = mission.name,
+                let launchDateString = current.net,
+                let launchDate = dateHelper.fromUTCToDate(dateString: launchDateString),
+                let pad = current.pad,
+                let site = pad.location,
+                let siteName = site.name,
+                let rocket = current.rocket,
+                let configuration = rocket.configuration,
+                let rocketName = configuration.name,
+                let imageURL = URL(string: current.image ?? APIConstant.defaultRocketURLString),
+                let articleURL = URL(string: current.url ?? APIConstant.spaceXHomeURLString),
+                let status = current.status
+            else { return nil }
             
-            return Launch(missionName: missionName,
-                          date: date,
-                          rocket: rocketString,
-                          days: days,
-                          daysDescription: daysDescription,
-                          launchYear: year,
-                          isLaunchSuccess: isLaunchSuccess,
-                          imageURL: imageURL,
-                          articleURL: articleURL)
+            let isLaunchSuccess = status.id == 3
+            let date = dateHelper.getUTCDayFormatted(dateString: launchDateString)
+            
+            return Launch(
+                missionName: missionName,
+                date: date,
+                rocket: rocketName,
+                siteName: siteName,
+                isLaunchSuccess: isLaunchSuccess,
+                isUpcomingLaunch: dateHelper.isUpcomingDate(launchDate: launchDate),
+                imageURL: imageURL,
+                articleURL: articleURL
+            )
         })
     }
     
@@ -138,8 +140,8 @@ extension LaunchModel {
 
 // MARK: - LAUNCH ITEM -
 public struct Launch: Hashable {
-    public let missionName, date, rocket, days, daysDescription, launchYear: String
-    public let isLaunchSuccess: Bool
+    public let missionName, date, rocket, siteName: String
+    public let isLaunchSuccess, isUpcomingLaunch: Bool
     public let imageURL, articleURL: URL
 }
 

@@ -26,7 +26,11 @@ let package = Package(
             name: "UIComponent",
             dependencies: [
                 .product(name: "HGCore", package: "SpaceX-Core")
-            ]),
+            ],
+            resources: [
+                .process("Assets")
+            ]
+        ),
         .target(
             name: "Launch",
             dependencies: [

@@ -10,42 +10,98 @@ import Foundation
 
 public typealias Launches = [LaunchEntity]
 
-// MARK: - LaunchEntity
-public struct LaunchEntity: Codable {
-    public let missionName: String?
-    public let launchDate: String?
-    public let launchYear: String?
-    public let rocket: Rocket?
-    public let links: Links?
-    public let launchSuccess: Bool?
+// MARK: - Result
+public struct LaunchResult: Codable {
+    public let launches: Launches
 
     public enum CodingKeys: String, CodingKey {
-        case missionName = "mission_name"
-        case launchDate = "launch_date_utc"
-        case launchYear = "launch_year"
-        case rocket = "rocket"
-        case links = "links"
-        case launchSuccess = "launch_success"
+        case launches = "results"
     }
 }
 
-// MARK: - Links
-public struct Links: Codable {
-    public let missionPatch: String?
-    public let articleUrl: String?
+// MARK: - LaunchEntity
+public struct LaunchEntity: Codable {
+    public let mission: Mission?
+    public let net: String?
+    public let rocket: Rocket?
+    public let url: String?
+    public let image: String?
+    public let pad: Pad?
+    public let status: Status?
+
+    public init(mission: Mission? = nil,
+                net: String? = nil,
+                rocket: Rocket? = nil,
+                url: String? = nil,
+                image: String? = nil,
+                pad: Pad? = nil,
+                status: Status? = nil) {
+        self.mission = mission
+        self.net = net
+        self.rocket = rocket
+        self.url = url
+        self.image = image
+        self.pad = pad
+        self.status = status
+    }
 
     public enum CodingKeys: String, CodingKey {
-        case missionPatch = "mission_patch"
-        case articleUrl = "article_link"
+        case net, url, image, status, pad
+        case mission = "mission"
+        case rocket = "rocket"
+    }
+}
+
+// MARK: - Mission
+public struct Mission: Codable {
+    public let name: String?
+
+    public init(name: String? = nil) {
+        self.name = name
+    }
+
+    public enum CodingKeys: String, CodingKey {
+        case name
+    }
+}
+
+// MARK: - Status
+public struct Status: Codable {
+    public let id: Int?
+    
+    public enum CodingKeys: String, CodingKey {
+        case id
     }
 }
 
 // MARK: - Rocket
 public struct Rocket: Codable {
-    public let rocketName, rocketType: String?
+    public let configuration: Configuration?
+}
+
+// MARK: - Configuration
+public struct Configuration: Codable {
+    public let name: String?
 
     public enum CodingKeys: String, CodingKey {
-        case rocketName = "rocket_name"
-        case rocketType = "rocket_type"
+        case name
+    }
+}
+
+// MARK: - Pad
+public struct Pad: Codable {
+    public let location: Location?
+
+    public enum CodingKeys: String, CodingKey {
+        case location
+    }
+}
+
+// MARK: - Location
+public struct Location: Codable {
+    public let name: String?
+
+    public enum CodingKeys: String, CodingKey {
+        case name
     }
 }

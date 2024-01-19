@@ -49,6 +49,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A693ECBE2B59902200ABEEAE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		098F8324277A3FF000E89652 /* SpaceX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceX.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		098F8330277A3FF300E89652 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -68,6 +81,7 @@
 		9AB2742C28A9B57500B7F614 /* LaunchServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchServiceTests.swift; sourceTree = "<group>"; };
 		9AB2742D28A9B57500B7F614 /* LaunchModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchModelTests.swift; sourceTree = "<group>"; };
 		9AB2747D28A9B93A00B7F614 /* SpaceXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A693ECB52B59902100ABEEAE /* Launch.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Launch.h; sourceTree = "<group>"; };
 		A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +127,7 @@
 				098F8326277A3FF000E89652 /* SpaceX */,
 				9AB2740C28A9B42700B7F614 /* SpaceXTests */,
 				9AB2747E28A9B93B00B7F614 /* SpaceXUITests */,
+				A693ECB42B59902100ABEEAE /* Launch */,
 				098F8325277A3FF000E89652 /* Products */,
 				9A678AFB28A675A200917A95 /* Frameworks */,
 			);
@@ -251,6 +266,14 @@
 			path = "readme gifs";
 			sourceTree = "<group>";
 		};
+		A693ECB42B59902100ABEEAE /* Launch */ = {
+			isa = PBXGroup;
+			children = (
+				A693ECB52B59902100ABEEAE /* Launch.h */,
+			);
+			path = Launch;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -261,6 +284,7 @@
 				098F8320277A3FF000E89652 /* Sources */,
 				098F8321277A3FF000E89652 /* Frameworks */,
 				098F8322277A3FF000E89652 /* Resources */,
+				A693ECBE2B59902200ABEEAE /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
