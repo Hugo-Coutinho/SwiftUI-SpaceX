@@ -66,10 +66,10 @@ public class LaunchModel: ObservableObject {
 extension LaunchModel {
     private func fetchingLaunches(offSet: Int) -> AnyPublisher<LaunchItems, Never> {
         return service.fetchLaunches(offSet: offSet)
-            .decode(type: Launches.self, decoder: JSONDecoder())
+            .decode(type: LaunchResult.self, decoder: JSONDecoder())
             .compactMap { [weak self] in
                 guard let self = self else { return nil }
-                return self.mapLaunches(launches: $0)
+                return self.mapLaunches(launches: $0.launches)
             }
             .replaceError(with: [])
             .eraseToAnyPublisher()

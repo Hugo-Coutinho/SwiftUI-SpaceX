@@ -13,7 +13,6 @@ import HGCore
 public class LaunchService: LaunchServiceInput {
     
     // MARK: - CONSTANT -
-    private let launch = "/launches"
     private let launchQueryString = "?limit=20&offset=%@"
     
     // MARK: - VARIABLES -
@@ -25,7 +24,7 @@ public class LaunchService: LaunchServiceInput {
     }
     
     public func fetchLaunches(offSet: Int) -> AnyPublisher<Data, LaunchAPIError> {
-        let urlString = APIConstant.baseURLString + launch + String(format: launchQueryString, "\(offSet)")
+        let urlString = APIConstant.baseURLString + APIConstant.launches + String(format: launchQueryString, "\(offSet)")
         guard let urlComponents = URLComponents(string: urlString),
               let url = urlComponents.url else { return Fail(error: LaunchAPIError(type: .unknown)).eraseToAnyPublisher() }
         return baseRequest.fetch(url: url)

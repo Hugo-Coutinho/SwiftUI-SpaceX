@@ -15,57 +15,19 @@ struct LaunchSectionView: View {
     var launch: Launch
     
     var body: some View {
-        VStack {
-            
+        VStack(alignment: .center) {
             Text(launch.missionName)
-                .font(.title)
+                .font(.headline)
             
             HStack {
                 launchImage
                 content
+                disclosureIndicator
             }
         }
-//            HStack {
-//                VStack(alignment: .leading, spacing: 8) {
-//                    HStack {
-//                        Text("Mission:")
-//                            .bold()
-//                        
-//                    }
-//                    
-//                    HStack {
-//                        Text("Date/Time:")
-//                            .bold()
-//                        Text(launch.date)
-//                            .scaledToFit()
-//                            .minimumScaleFactor(0.05)
-//                    }
-//                    
-//                    HStack {
-//                        Text("Rocket:")
-//                            .bold()
-//                        Text(launch.rocket)
-//                    }
-//                    
-//                    HStack {
-//                        Text(launch.siteName)
-//                            .bold()
-//                    }
-//                    Spacer()
-//                }
-//                .padding(.top)
-//            }
-//            .frame(height: 200)
-//        }
-//        .onTapGesture {
-//            openURL(launch.articleURL)
-//        }
-    }
-    
-    var launchImage: some View {
-            LazyImage(source: launch.imageURL, resizingMode: .aspectFit)
-                .frame(width: 50, height: 50)
-                .padding()
+        .onTapGesture {
+            openURL(launch.articleURL)
+        }
     }
     
     var content: some View {
@@ -75,6 +37,18 @@ struct LaunchSectionView: View {
             location
         }
         .padding()
+    }
+    
+    var disclosureIndicator: some View {
+        Image(systemName: "chevron.right")
+            .foregroundColor(.gray)
+            .padding(.trailing, -8)
+    }
+    
+    var launchImage: some View {
+        LazyImage(source: launch.imageURL, resizingMode: .aspectFill)
+                .frame(width: 70, height: 120)
+                .padding()
     }
     
     var rocket: some View {
@@ -104,7 +78,7 @@ struct SwiftUILaunchSectionView_Previews: PreviewProvider {
         LaunchSectionView(launch: Launch(missionName: "FalconSat",
                                          date: "2007/03/20 - 7:30 pm",
                                          rocket: "Falcon 1 / Merlin A",
-                                         siteName: "Site Name",
+                                         siteName: "Site Name Falcon 1 / Merlin A",
                                          isLaunchSuccess: false,
                                          isUpcomingLaunch: false,
                                          imageURL:
