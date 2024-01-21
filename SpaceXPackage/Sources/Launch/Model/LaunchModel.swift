@@ -17,14 +17,13 @@ public class LaunchModel: ObservableObject {
     
     private var service: LaunchServiceInput
     private var dateHelper: DateHelper
-    private var currentPage = 0
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: - CONSTRUCTOR -
     public init(service: LaunchServiceInput, dateHelper: DateHelper) {
         self.service = service
         self.dateHelper = dateHelper
-        fetchingLaunches(offSet: currentPage)
+        fetchingLaunches()
             .map { $0 }
             .assign(to: &$launches)
     }
@@ -49,12 +48,14 @@ public class LaunchModel: ObservableObject {
     public func loadMoreContentIfNeeded(isUserTexting: Bool) {
         guard !isLoadingPage,
               !isUserTexting else { return }
+        
         isLoadingPage = true
-        fetchingLaunches(offSet: currentPage)
+        fetchingLaunches()
             .map { $0 }
-            .sink (receiveValue: { items in
+            .sink (receiveValue: { [weak self] items in
+                guard let self = self else { return }
+                
                 self.isLoadingPage = false
-                self.currentPage += 1
                 self.launches.append(contentsOf: items)
                 self.objectWillChange.send()
             })
@@ -64,12 +65,12 @@ public class LaunchModel: ObservableObject {
 
 // MARK: - ASSISTANT METHODS -
 extension LaunchModel {
-    private func fetchingLaunches(offSet: Int) -> AnyPublisher<LaunchItems, Never> {
-        return service.fetchLaunches(offSet: offSet)
-            .decode(type: LaunchResult.self, decoder: JSONDecoder())
+    private func fetchingLaunches() -> AnyPublisher<LaunchItems, Never> {
+        return service.fetchLaunches()
             .compactMap { [weak self] in
                 guard let self = self else { return nil }
-                return self.mapLaunches(launches: $0.launches)
+                
+                return self.mapLaunches(launches: $0)
             }
             .replaceError(with: [])
             .eraseToAnyPublisher()

@@ -24,7 +24,7 @@ class LaunchServiceTests: XCTestCase {
         let expectation = self.expectation(description: "LaunchService")
         
         // 2. WHEN
-        sut?.fetchLaunches(offSet: 0)
+        sut?.fetchLaunches()
             .sink(receiveCompletion: { completion in
                 expectation.fulfill()
             }, receiveValue: {_ in })

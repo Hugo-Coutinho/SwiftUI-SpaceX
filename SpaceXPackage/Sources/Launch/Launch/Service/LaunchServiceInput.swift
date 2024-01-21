@@ -15,5 +15,5 @@ public protocol LaunchServiceInput: AnyObject {
     var baseRequest: LaunchNetworkInput { get set }
 
     // MARK: - INPUT METHODS -
-    func fetchLaunches(offSet: Int) -> AnyPublisher<Data, LaunchAPIError>
+    func fetchLaunches() -> AnyPublisher<Launches, LaunchAPIError>
 }
