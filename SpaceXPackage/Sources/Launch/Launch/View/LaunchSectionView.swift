@@ -7,7 +7,7 @@
 
 import SwiftUI
 import NukeUI
-import UIComponent
+import HGCore
 
 struct LaunchSectionView: View {
     
@@ -22,7 +22,9 @@ struct LaunchSectionView: View {
             HStack {
                 launchImage
                 content
+                Spacer()
                 disclosureIndicator
+                    .padding(.trailing)
             }
         }
         .onTapGesture {
@@ -54,21 +56,21 @@ struct LaunchSectionView: View {
     
     var rocket: some View {
         HStack {
-            Image("rocket", bundle: UIComponent.bundle)
+            Image("rocket", bundle: HGCore.bundle)
             Text(launch.rocket)
         }
     }
     
     var date: some View {
         HStack {
-            Image("calendar", bundle: UIComponent.bundle)
+            Image("calendar", bundle: HGCore.bundle)
             Text(launch.date)
         }
     }
     
     var location: some View {
         HStack {
-            Image("location", bundle: UIComponent.bundle)
+            Image("location", bundle: HGCore.bundle)
             Text(launch.siteName)
         }
     }

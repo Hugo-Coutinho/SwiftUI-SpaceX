@@ -19,16 +19,13 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/kean/NukeUI", from: "0.8.3"),
         .package(url: "https://github.com/Hugo-Coutinho/Network-Layer-Framework", from: "1.0.4"),
-        .package(url: "https://github.com/Hugo-Coutinho/SpaceX-Core", from: "1.0.2")
+        .package(url: "https://github.com/Hugo-Coutinho/SpaceX-Core", from: "1.0.3")
     ],
     targets: [
         .target(
             name: "UIComponent",
             dependencies: [
                 .product(name: "HGCore", package: "SpaceX-Core")
-            ],
-            resources: [
-                .process("Assets")
             ]
         ),
         .target(
