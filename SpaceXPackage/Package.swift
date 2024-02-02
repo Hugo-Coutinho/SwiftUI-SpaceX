@@ -14,11 +14,14 @@ let package = Package(
             targets: ["UIComponent"]),
         .library(
             name: "Launch",
-            targets: ["Launch"])
+            targets: ["Launch"]),
+        .library(
+            name: "Astronaut",
+            targets: ["Astronaut"])
     ],
     dependencies: [
         .package(url: "https://github.com/kean/NukeUI", from: "0.8.3"),
-        .package(url: "https://github.com/Hugo-Coutinho/Network-Layer-Framework", from: "1.0.4"),
+        .package(url: "https://github.com/Hugo-Coutinho/Network-Layer-Framework", from: "1.0.5"),
         .package(url: "https://github.com/Hugo-Coutinho/SpaceX-Core", from: "1.0.3")
     ],
     targets: [
@@ -30,6 +33,13 @@ let package = Package(
         ),
         .target(
             name: "Launch",
+            dependencies: [
+                "NukeUI",
+                "UIComponent",
+                .product(name: "HGNetworkLayer", package: "Network-Layer-Framework")
+            ]),
+        .target(
+            name: "Astronaut",
             dependencies: [
                 "NukeUI",
                 "UIComponent",

@@ -37,12 +37,57 @@ class LaunchServiceTests: XCTestCase {
         // 3. THEN
         XCTAssertNil(weakSUT)
     }
+    
+    func test_SuccessFetch() async throws {
+        // 1. GIVEN
+        let sut: LaunchServiceInput? = makeSUT()
+        
+        // 2. WHEN
+        sut?.fetchLaunches()
+            .sink(receiveCompletion: { _ in },
+                  receiveValue: { result in
+                
+                // 3. THEN
+                XCTAssertNotNil(result)
+                
+            })
+            .store(in: &cancellables)
+    }
+    
+    func test_FailedFetch() async throws {
+        // 1. GIVEN
+        let sut: LaunchServiceInput? = makeErrorSUT()
+        
+        // 2. WHEN
+        sut?.fetchLaunches()
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print("catch working")
+                }
+            },
+                  receiveValue: { result in
+                
+                // 3. THEN
+                XCTAssertThrowsError("should throw error")
+                
+            })
+        
+            .store(in: &cancellables)
+    }
 }
 
 // MARK: - MAKE SUT -
 extension LaunchServiceTests {
     private func makeSUT() -> LaunchServiceInput {
         let baseRequestSpy = BaseRequestSuccessHandlerSpy(service: .launch)
+        return LaunchService(baseRequest: baseRequestSpy)
+    }
+    
+    private func makeErrorSUT() -> LaunchServiceInput {
+        let baseRequestSpy = BaseRequestErrorHandlerSpy()
         return LaunchService(baseRequest: baseRequestSpy)
     }
 }

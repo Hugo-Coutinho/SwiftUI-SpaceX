@@ -22,6 +22,12 @@
 		9AB2743D28A9B57500B7F614 /* LaunchServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2742C28A9B57500B7F614 /* LaunchServiceTests.swift */; };
 		9AB2743E28A9B57500B7F614 /* LaunchModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AB2742D28A9B57500B7F614 /* LaunchModelTests.swift */; };
 		9AB2744628A9B57A00B7F614 /* launch_data.json in Resources */ = {isa = PBXBuildFile; fileRef = 9AB2742228A9B57500B7F614 /* launch_data.json */; };
+		A68A3C5A2B6AB92800135498 /* AstronautServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A3C592B6AB92800135498 /* AstronautServiceTests.swift */; };
+		A68A3C5C2B6AB9C100135498 /* Astronaut in Frameworks */ = {isa = PBXBuildFile; productRef = A68A3C5B2B6AB9C100135498 /* Astronaut */; };
+		A68A3C602B6ABA5F00135498 /* BasePublisherSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A3C5F2B6ABA5F00135498 /* BasePublisherSpy.swift */; };
+		A68A3C622B6ABE4900135498 /* Astronaut_data.json in Resources */ = {isa = PBXBuildFile; fileRef = A68A3C612B6ABE4900135498 /* Astronaut_data.json */; };
+		A68A3C632B6ABE8200135498 /* Astronaut_data.json in Resources */ = {isa = PBXBuildFile; fileRef = A68A3C612B6ABE4900135498 /* Astronaut_data.json */; };
+		A68A3C652B6C233C00135498 /* AstronautModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68A3C642B6C233C00135498 /* AstronautModelTests.swift */; };
 		A6C324902B0E7CD900F1E5B7 /* SpaceXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +87,10 @@
 		9AB2742C28A9B57500B7F614 /* LaunchServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchServiceTests.swift; sourceTree = "<group>"; };
 		9AB2742D28A9B57500B7F614 /* LaunchModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchModelTests.swift; sourceTree = "<group>"; };
 		9AB2747D28A9B93A00B7F614 /* SpaceXUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceXUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A68A3C592B6AB92800135498 /* AstronautServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautServiceTests.swift; sourceTree = "<group>"; };
+		A68A3C5F2B6ABA5F00135498 /* BasePublisherSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasePublisherSpy.swift; sourceTree = "<group>"; };
+		A68A3C612B6ABE4900135498 /* Astronaut_data.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Astronaut_data.json; sourceTree = "<group>"; };
+		A68A3C642B6C233C00135498 /* AstronautModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautModelTests.swift; sourceTree = "<group>"; };
 		A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +99,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68A3C5C2B6AB9C100135498 /* Astronaut in Frameworks */,
 				9A2020D628A8164A00439E0D /* Launch in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -205,6 +216,7 @@
 		9AB2740C28A9B42700B7F614 /* SpaceXTests */ = {
 			isa = PBXGroup;
 			children = (
+				A68A3C5E2B6ABA5F00135498 /* Spies */,
 				9AB2742028A9B57500B7F614 /* Fixture */,
 				9AB2742928A9B57500B7F614 /* Tests */,
 			);
@@ -214,6 +226,7 @@
 		9AB2742028A9B57500B7F614 /* Fixture */ = {
 			isa = PBXGroup;
 			children = (
+				A68A3C612B6ABE4900135498 /* Astronaut_data.json */,
 				9AB2742228A9B57500B7F614 /* launch_data.json */,
 			);
 			path = Fixture;
@@ -230,6 +243,7 @@
 		9AB2742A28A9B57500B7F614 /* Sections */ = {
 			isa = PBXGroup;
 			children = (
+				A68A3C582B6AB8FD00135498 /* Astronaut */,
 				9AB2742B28A9B57500B7F614 /* Launches */,
 			);
 			path = Sections;
@@ -264,6 +278,23 @@
 			path = "readme gifs";
 			sourceTree = "<group>";
 		};
+		A68A3C582B6AB8FD00135498 /* Astronaut */ = {
+			isa = PBXGroup;
+			children = (
+				A68A3C592B6AB92800135498 /* AstronautServiceTests.swift */,
+				A68A3C642B6C233C00135498 /* AstronautModelTests.swift */,
+			);
+			path = Astronaut;
+			sourceTree = "<group>";
+		};
+		A68A3C5E2B6ABA5F00135498 /* Spies */ = {
+			isa = PBXGroup;
+			children = (
+				A68A3C5F2B6ABA5F00135498 /* BasePublisherSpy.swift */,
+			);
+			path = Spies;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -283,6 +314,7 @@
 			name = SpaceX;
 			packageProductDependencies = (
 				9A2020D528A8164A00439E0D /* Launch */,
+				A68A3C5B2B6AB9C100135498 /* Astronaut */,
 			);
 			productName = SpaceX;
 			productReference = 098F8324277A3FF000E89652 /* SpaceX.app */;
@@ -405,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A383C6628DE022000C63F30 /* scrolling.gif in Resources */,
+				A68A3C632B6ABE8200135498 /* Astronaut_data.json in Resources */,
 				9AB2744628A9B57A00B7F614 /* launch_data.json in Resources */,
 				9A383C6728DE022000C63F30 /* sorting.gif in Resources */,
 				098F8331277A3FF300E89652 /* Assets.xcassets in Resources */,
@@ -424,6 +457,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AB2743728A9B57500B7F614 /* launch_data.json in Resources */,
+				A68A3C622B6ABE4900135498 /* Astronaut_data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,7 +490,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68A3C5A2B6AB92800135498 /* AstronautServiceTests.swift in Sources */,
 				9AB2743E28A9B57500B7F614 /* LaunchModelTests.swift in Sources */,
+				A68A3C652B6C233C00135498 /* AstronautModelTests.swift in Sources */,
+				A68A3C602B6ABA5F00135498 /* BasePublisherSpy.swift in Sources */,
 				9AB2743D28A9B57500B7F614 /* LaunchServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -865,6 +902,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9A5B2C2928CF8188000D119D /* XCRemoteSwiftPackageReference "KIF" */;
 			productName = KIF;
+		};
+		A68A3C5B2B6AB9C100135498 /* Astronaut */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Astronaut;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

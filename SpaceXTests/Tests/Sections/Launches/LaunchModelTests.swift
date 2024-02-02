@@ -12,13 +12,7 @@ import Launch
 import Combine
 
 class LaunchModelTests: XCTestCase {
-    private var cancellables: Set<AnyCancellable>!
     private lazy var dateHelper = DateHelper()
-    
-    override func setUp() {
-        super.setUp()
-        cancellables = []
-    }
     
     func test_shouldMatchDate() {
         // 1. GIVEN
@@ -100,10 +94,10 @@ class LaunchModelTests: XCTestCase {
         let firstYearExpected = "1958/08/25"
         let secondYearExpected = "1957/12/06"
         let thirdYearExpected = "1957/10/04"
-
+        
         // 2. WHEN
         let result = sut.getLaunches(sort: .desc)
-
+        
         // 3. THEN
         XCTAssertFalse(result.isEmpty)
         XCTAssertEqual(result.count, 20)

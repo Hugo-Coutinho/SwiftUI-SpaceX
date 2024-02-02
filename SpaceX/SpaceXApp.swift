@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Launch
+import Astronaut
 
 @main
 struct SpaceXApp: App {
@@ -14,6 +15,7 @@ struct SpaceXApp: App {
         WindowGroup {
             SpaceXList()
                 .environmentObject(LaunchBuilder().makeModel())
+                .environmentObject(AstronautBuilder().makeModel())
         }
     }
 }

@@ -1,0 +1,103 @@
+{
+    "count": 2,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "id": 225,
+            "url": "https://lldev.thespacedevs.com/2.2.0/astronaut/225/",
+            "name": "Marcos Pontes",
+            "status": {
+                "id": 1,
+                "name": "Active"
+            },
+            "type": {
+                "id": 2,
+                "name": "Government"
+            },
+            "in_space": false,
+            "time_in_space": "P9DT21H18M",
+            "eva_time": "P0D",
+            "age": 60,
+            "date_of_birth": "1963-03-11",
+            "date_of_death": null,
+            "nationality": "Brazilian",
+            "bio": "Marcos Cesar Pontes (born March 11, 1963) is a Brazilian Air Force pilot, engineer, AEB astronaut and author. He became the first South American and the first Lusophone to go into space when he launched into the International Space Station aboard Soyuz TMA-8 on March 30, 2006. He is the only Brazilian to have completed the NASA astronaut training program, although he switched to training in Russia after NASA's Space Shuttle program encountered problems.",
+            "twitter": null,
+            "instagram": null,
+            "wiki": "https://en.wikipedia.org/wiki/Marcos_Pontes",
+            "agency": {
+                "id": 12,
+                "url": "https://lldev.thespacedevs.com/2.2.0/agencies/12/",
+                "name": "Brazilian Space Agency",
+                "featured": false,
+                "type": "Government",
+                "country_code": "BRA",
+                "abbrev": "AEB",
+                "description": "The Brazilian Space Agency is a space agency in South America.  They work in partnership with the US and Russia aboard the ISS. It was previously operated by the military until 1994. They now operate largely in tandem with other nations. They run a spaceport and rocket launch site both in Brazil. They built the VLM small satellite launch system in tandem with Germany. The VLS-1 was intended to be a primary launch vehicle for the BSA, but it failed 3 times and was canceled. They have restarted work on the system in tandem with the Russian Space Agency.",
+                "administrator": "José Raimundo Coelho",
+                "founding_year": "1961",
+                "launchers": "VLM | VLS",
+                "spacecraft": "None",
+                "parent": null,
+                "image_url": null,
+                "logo_url": null
+            },
+            "profile_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/astronaut_images/marcos2520pontes_image_20181201212435.jpg",
+            "profile_image_thumbnail": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/astronaut_images/marcos_pontes_thumbnail_20220911034557.jpeg",
+            "flights_count": 1,
+            "landings_count": 1,
+            "spacewalks_count": 0,
+            "last_flight": "2006-03-30T02:30:00Z",
+            "first_flight": "2006-03-30T02:30:00Z"
+        },
+        {
+            "id": 728,
+            "url": "https://lldev.thespacedevs.com/2.2.0/astronaut/728/",
+            "name": "Victor Correa Hespanha",
+            "status": {
+                "id": 14,
+                "name": "Occasional Spaceflight"
+            },
+            "type": {
+                "id": 3,
+                "name": "Private"
+            },
+            "in_space": false,
+            "time_in_space": "PT10M5S",
+            "eva_time": "P0D",
+            "age": null,
+            "date_of_birth": null,
+            "date_of_death": null,
+            "nationality": "Brazilian",
+            "bio": "Victor is a civil production engineer from Minas Gerais (Brazil).",
+            "twitter": null,
+            "instagram": null,
+            "wiki": null,
+            "agency": {
+                "id": 141,
+                "url": "https://lldev.thespacedevs.com/2.2.0/agencies/141/",
+                "name": "Blue Origin",
+                "featured": true,
+                "type": "Commercial",
+                "country_code": "USA",
+                "abbrev": "BO",
+                "description": "Blue Origin is an American privately funded aerospace manufacturer and spaceflight services company set up by Amazon.com founder Jeff Bezos with its headquarters in Kent, Washington. The company is developing technologies to enable private human access to space with the goal to dramatically lower costs and increase reliability. Blue Origin currently launches its New Shepard sub-orbital vehicle from its West Texas launch site, they are currently constructing a launch pad for their orbital vehicle New Glenn at Cape Canaveral LC-36.",
+                "administrator": "CEO: Jeff Bezos",
+                "founding_year": "2000",
+                "launchers": "New Shepard | New Glenn",
+                "spacecraft": "",
+                "parent": null,
+                "image_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/agency_images/blue2520origin_image_20190207032427.jpeg",
+                "logo_url": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/logo/blue2520origin_logo_20190207032427.png"
+            },
+            "profile_image": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/astronaut_images/victor_correa_h_image_20220911034635.png",
+            "profile_image_thumbnail": "https://spacelaunchnow-prod-east.nyc3.digitaloceanspaces.com/media/astronaut_images/victor_correa_h_thumbnail_20220911034635.png",
+            "flights_count": 1,
+            "landings_count": 1,
+            "spacewalks_count": 0,
+            "last_flight": "2022-06-04T13:25:42Z",
+            "first_flight": "2022-06-04T13:25:42Z"
+        }
+    ]
+}

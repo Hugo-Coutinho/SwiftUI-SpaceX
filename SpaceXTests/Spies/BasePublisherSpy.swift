@@ -6,13 +6,16 @@
 //  Copyright © 2021 . All rights reserved.
 //
 
-import Foundation
+import Launch
 import Combine
+import HGNetworkLayer
+import Foundation
 
-public class BaseRequestSuccessHandlerSpy: LaunchNetworkInput {
+public class BaseRequestSuccessHandlerSpy {
     // MARK: - ENUM -
     public enum ServiceEnum {
         case launch
+        case astronaut
     }
     
     // MARK: - DECLARATIONS -
@@ -21,21 +24,26 @@ public class BaseRequestSuccessHandlerSpy: LaunchNetworkInput {
     public init(service: ServiceEnum) {
         self.service = service
     }
-    
-    // MARK: - PUBLIC FUNCTIONS -
-    public func doRequest(urlString: String, completionHandler: @escaping (Data?) -> Void) {
-        if let data = readLocalFile(forName: getLocalFileNameByService()) {
-            completionHandler(data)
-        } else {
-            fatalError("should return json data")
-        }
-    }
-    
+}
+
+// MARK: - LaunchNetworkInput -
+extension BaseRequestSuccessHandlerSpy: LaunchNetworkInput {
     public func fetch(url: URL) -> AnyPublisher<Data, LaunchAPIError> {
         if let data = readLocalFile(forName: getLocalFileNameByService()) {
             return Just(data)
                 .setFailureType(to: LaunchAPIError.self)
                 .eraseToAnyPublisher()
+        } else {
+            fatalError("should return json data")
+        }
+    }
+}
+
+// MARK: - BaseAsyncRequestInput -
+extension BaseRequestSuccessHandlerSpy: BaseAsyncRequestInput {
+    public func asyncWith(_ url: URL) async throws -> Data {
+        if let data = readLocalFile(forName: getLocalFileNameByService()) {
+            return data
         } else {
             fatalError("should return json data")
         }
@@ -48,6 +56,8 @@ extension BaseRequestSuccessHandlerSpy {
         switch self.service {
         case .launch:
             return "launch_data"
+        case .astronaut:
+            return "Astronaut_data"
         }
     }
     
@@ -72,5 +82,12 @@ public class BaseRequestErrorHandlerSpy: LaunchNetworkInput {
         
     public func fetch(url: URL) -> AnyPublisher<Data, LaunchAPIError> {
         return Fail(error: LaunchAPIError(type: .unknown)).eraseToAnyPublisher()
+    }
+}
+
+// MARK: - BaseAsyncRequestInput -
+extension BaseRequestErrorHandlerSpy: BaseAsyncRequestInput {
+    public func asyncWith(_ url: URL) async throws -> Data {
+        throw LaunchAPIError(type: .unknown)
     }
 }
