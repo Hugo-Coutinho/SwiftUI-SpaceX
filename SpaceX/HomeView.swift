@@ -34,15 +34,15 @@ struct HomeView: View {
         VStack {
             HeaderView(headerText: "Launches")
             
-            NavigationLink(destination: LaunchView()) {
+            NavigationLink(destination: LaunchView(type: .upcoming)) {
                 BannerView(imageURLString: APIConstant.upcomingImageUrlString, title: "Upcoming Launches")
             }
             
-            NavigationLink(destination: LaunchView()) {
+            NavigationLink(destination: LaunchView(type: .past)) {
                 BannerView(imageURLString: APIConstant.pastImageUrlString, title: "Past Launches")
             }
             
-            NavigationLink(destination: LaunchView()) {
+            NavigationLink(destination: LaunchView(type: .all)) {
                 BannerView(imageURLString: APIConstant.allImageUrlString, title: "All Launches")
             }
         }

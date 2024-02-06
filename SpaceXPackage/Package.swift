@@ -37,7 +37,8 @@ let package = Package(
             dependencies: [
                 "NukeUI",
                 "UIComponent",
-                .product(name: "HGNetworkLayer", package: "Network-Layer-Framework")
+                .product(name: "HGNetworkLayer", package: "Network-Layer-Framework"),
+                .product(name: "HGCore", package: "SpaceX-Core")
             ]),
         .target(
             name: "Astronaut",

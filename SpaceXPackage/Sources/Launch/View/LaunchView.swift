@@ -15,6 +15,8 @@ public struct LaunchView: View {
     @State public var inputText = ""
     @State public var pickerSelected: AppBarScopedButtons = AppBarScopedButtons.asc
     
+    let type: LaunchType
+    
     // MARK: - VIEWS -    
     var LaunchSection: some View {
         Section(header: Text("Launch")) {
@@ -32,12 +34,14 @@ public struct LaunchView: View {
     }
     
     // MARK: - CONSTRUCTOR -
-    public init() {}
+    public init(type: LaunchType) {
+        self.type = type
+    }
     
     public var body: some View {
         VStack {
             AppBarView(inputText: $inputText, pickerSelected: $pickerSelected)
-                .navigationTitle("Lau")
+                .navigationTitle(type.longTitle)
                 .navigationBarTitleDisplayMode(.inline)
             List {
                 LaunchSection
@@ -52,7 +56,7 @@ public struct LaunchView: View {
 
 struct SwiftUISpaceXListView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchView()
+        LaunchView(type: .all)
             .environmentObject(getLaunchModel())
         .previewLayout(.device)
     }
