@@ -9,7 +9,6 @@ import SwiftUI
 import HGCore
 
 public struct AppBarView: View {
-    @State private var showSearchBar = false
     @Binding public var inputText: String
     @Binding public var pickerSelected: AppBarScopedButtons
     private let segments = [AppBarScopedButtons.asc, AppBarScopedButtons.desc]
@@ -17,6 +16,23 @@ public struct AppBarView: View {
     public init(inputText: Binding<String>, pickerSelected: Binding<AppBarScopedButtons>) {
         self._inputText = inputText
         self._pickerSelected = pickerSelected
+    }
+    
+    public var body: some View {
+        VStack {
+            HStack {
+                Spacer()
+                SearchBarView
+                    .transition(.move(edge: .top))
+                Spacer()
+                Image(systemName: "magnifyingglass")
+                    .accessibilityIdentifier("SearchIcon")
+            }
+            .font(.system(size: 25))
+            .frame(height: 50)
+            
+            PickerLaunchOrder
+        }
     }
     
     public var SearchBarView: some View {
@@ -38,33 +54,5 @@ public struct AppBarView: View {
             }
         }
         .pickerStyle(.segmented)
-    }
-    
-    public var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                if showSearchBar {
-                    SearchBarView
-                        .transition(.move(edge: .top))
-                } else {
-                    Text("SpaceX")
-                        .bold()
-                }
-                Spacer()
-                Image(systemName: "magnifyingglass")
-                    .accessibilityIdentifier("SearchIcon")
-                    .onTapGesture {
-                        withAnimation(.easeInOut) {
-                            showSearchBar.toggle()
-                            inputText = ""
-                        }
-                    }
-            }
-            .font(.system(size: 25))
-            .frame(height: 50)
-            
-            PickerLaunchOrder
-        }
     }
 }

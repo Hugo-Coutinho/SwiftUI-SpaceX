@@ -9,7 +9,7 @@ import SwiftUI
 import NukeUI
 import HGCore
 
-struct LaunchSectionView: View {
+struct LaunchItemView: View {
     
     @Environment(\.openURL) var openURL
     var launch: Launch
@@ -85,7 +85,7 @@ struct LaunchSectionView: View {
 
 struct SwiftUILaunchSectionView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchSectionView(launch: Launch(missionName: "FalconSat",
+        LaunchItemView(launch: Launch(missionName: "FalconSat",
                                          date: "2007/03/20 - 7:30 pm",
                                          rocket: "Falcon 1 / Merlin A",
                                          siteName: "Site Name Falcon 1 / Merlin A",

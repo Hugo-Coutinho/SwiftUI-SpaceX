@@ -9,7 +9,7 @@ import SwiftUI
 import HGCore
 import UIComponent
 
-public struct SpaceXList: View {
+public struct LaunchView: View {
     
     @EnvironmentObject public var launchModel: LaunchModel
     @State public var inputText = ""
@@ -21,7 +21,7 @@ public struct SpaceXList: View {
             let launches = launchModel.getLaunches(text: inputText, sort: pickerSelected)
             ForEach(launches.indices, id: \.self) { launchIndex in
                 let launch = launches[launchIndex]
-                LaunchSectionView(launch: launch)
+                LaunchItemView(launch: launch)
                     .onAppear {
                         if launchIndex == launches.count - 1 {
                             launchModel.loadMoreContentIfNeeded(isUserTexting: !inputText.isEmpty)
@@ -37,10 +37,12 @@ public struct SpaceXList: View {
     public var body: some View {
         VStack {
             AppBarView(inputText: $inputText, pickerSelected: $pickerSelected)
-                .navigationBarHidden(true)
+                .navigationTitle("Lau")
+                .navigationBarTitleDisplayMode(.inline)
             List {
                 LaunchSection
             }
+            
             if launchModel.isLoadingPage {
                 ProgressView()
             }
@@ -50,7 +52,7 @@ public struct SpaceXList: View {
 
 struct SwiftUISpaceXListView_Previews: PreviewProvider {
     static var previews: some View {
-        SpaceXList()
+        LaunchView()
             .environmentObject(getLaunchModel())
         .previewLayout(.device)
     }

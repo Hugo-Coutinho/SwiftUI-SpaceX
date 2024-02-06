@@ -28,6 +28,7 @@ let package = Package(
         .target(
             name: "UIComponent",
             dependencies: [
+                "NukeUI",
                 .product(name: "HGCore", package: "SpaceX-Core")
             ]
         ),

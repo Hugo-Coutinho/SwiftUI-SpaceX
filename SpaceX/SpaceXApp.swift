@@ -13,7 +13,7 @@ import Astronaut
 struct SpaceXApp: App {
     var body: some Scene {
         WindowGroup {
-            SpaceXList()
+            HomeView()
                 .environmentObject(LaunchBuilder().makeModel())
                 .environmentObject(AstronautBuilder().makeModel())
         }

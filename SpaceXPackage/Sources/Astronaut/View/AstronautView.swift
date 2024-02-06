@@ -8,23 +8,26 @@
 import SwiftUI
 import NukeUI
 
-struct AstronautView: View {
+public struct AstronautView: View {
     @EnvironmentObject public var model: AstronautModel
     
-    var body: some View {
+    // MARK: - CONSTRUCTOR -
+    public init() {}
+    
+    public var body: some View {
         ScrollView(.horizontal) {
             LazyHGrid(rows: [GridItem()]) {
                 ForEach(model.astronauts) { astronaut in
                     HStack {
                         VStack(alignment: .leading) {
                             LazyImage(source: astronaut.profile, resizingMode: .aspectFill)
-                                .frame(width: 120, height: 120)
+                                .frame(width: 150)
                             Text(astronaut.name)
                         }
                     }
                 }
             }
-            .padding()
+            .frame(height: 200)
         }
     }
 }
