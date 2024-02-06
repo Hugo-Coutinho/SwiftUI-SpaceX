@@ -31,6 +31,7 @@
 		A6B6D5E22B714FD0003A1FFF /* UIComponent in Frameworks */ = {isa = PBXBuildFile; productRef = A6B6D5E12B714FD0003A1FFF /* UIComponent */; };
 		A6C324902B0E7CD900F1E5B7 /* SpaceXApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */; };
 		A6DCB4252B6EC74D00AAACFD /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6DCB4242B6EC74D00AAACFD /* HomeView.swift */; };
+		A6F3249D2B72B9AF0091F381 /* HomeViewSnapshotTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6F3249C2B72B9AF0091F381 /* HomeViewSnapshotTesting.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +96,7 @@
 		A68A3C642B6C233C00135498 /* AstronautModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautModelTests.swift; sourceTree = "<group>"; };
 		A6C3248F2B0E7CD900F1E5B7 /* SpaceXApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceXApp.swift; sourceTree = "<group>"; };
 		A6DCB4242B6EC74D00AAACFD /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A6F3249C2B72B9AF0091F381 /* HomeViewSnapshotTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewSnapshotTesting.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +209,7 @@
 			children = (
 				9A5B2C1E28CF66C6000D119D /* LaunchViewSnapshotTesting.swift */,
 				9A5B2C2428CF6BB3000D119D /* AppBarSnapshotTesting.swift */,
+				A6F3249C2B72B9AF0091F381 /* HomeViewSnapshotTesting.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A5B2C2328CF6B75000D119D /* SwiftUIExtension.swift in Sources */,
+				A6F3249D2B72B9AF0091F381 /* HomeViewSnapshotTesting.swift in Sources */,
 				9A5B2C1F28CF66C6000D119D /* LaunchViewSnapshotTesting.swift in Sources */,
 				9A5B2C2528CF6BB3000D119D /* AppBarSnapshotTesting.swift in Sources */,
 				9A5B2C2D28CF8274000D119D /* XCTestCaseExtension.swift in Sources */,

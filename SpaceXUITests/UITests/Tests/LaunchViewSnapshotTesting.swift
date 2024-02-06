@@ -14,7 +14,7 @@ import KIF
 
 class LaunchViewSnapshotTesting: XCTestCase {
     func test_shouldReturn_launchView() {
-        let launchView = LaunchSectionView(launch: Launch(missionName: "FalconSat",
+        let launchView = LaunchItemView(launch: Launch(missionName: "FalconSat",
                                                           date: "2007/03/20 - 7:30 pm",
                                                           rocket: "Falcon 1 / Merlin A",
                                                           siteName: "Site Name Falcon 1 / Merlin A",
