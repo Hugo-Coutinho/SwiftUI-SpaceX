@@ -15,6 +15,14 @@ public class LaunchModel: ObservableObject {
     @Published public var launches: LaunchItems = []
     @Published public var isLoadingPage = false
     
+    public var category: LaunchType = .all {
+        didSet {
+            fetchingLaunches()
+                .map { $0 }
+                .assign(to: &$launches)
+        }
+    }
+    
     private var service: LaunchServiceInput
     private var dateHelper: DateHelper
     private var cancellables = Set<AnyCancellable>()
@@ -23,13 +31,10 @@ public class LaunchModel: ObservableObject {
     public init(service: LaunchServiceInput, dateHelper: DateHelper) {
         self.service = service
         self.dateHelper = dateHelper
-        fetchingLaunches()
-            .map { $0 }
-            .assign(to: &$launches)
     }
     
     // MARK: - EXPOSED METHODS -
-    public func getLaunches(text: String = "", sort: AppBarScopedButtons = .asc) -> LaunchItems {
+    public func filteredLaunches(text: String = "", sort: AppBarScopedButtons = .asc) -> LaunchItems {
         return launches
             .filter({
                 guard !text.isEmpty else { return true }
@@ -66,7 +71,7 @@ public class LaunchModel: ObservableObject {
 // MARK: - ASSISTANT METHODS -
 extension LaunchModel {
     private func fetchingLaunches() -> AnyPublisher<LaunchItems, Never> {
-        return service.fetchLaunches()
+        return service.fetchLaunches(category: category)
             .compactMap { [weak self] in
                 guard let self = self else { return nil }
                 

@@ -24,7 +24,7 @@ class LaunchServiceTests: XCTestCase {
         let expectation = self.expectation(description: "LaunchService")
         
         // 2. WHEN
-        sut?.fetchLaunches()
+        sut?.fetchLaunches(category: .all)
             .sink(receiveCompletion: { completion in
                 expectation.fulfill()
             }, receiveValue: {_ in })
@@ -43,7 +43,7 @@ class LaunchServiceTests: XCTestCase {
         let sut: LaunchServiceInput? = makeSUT()
         
         // 2. WHEN
-        sut?.fetchLaunches()
+        sut?.fetchLaunches(category: .all)
             .sink(receiveCompletion: { _ in },
                   receiveValue: { result in
                 
@@ -59,7 +59,7 @@ class LaunchServiceTests: XCTestCase {
         let sut: LaunchServiceInput? = makeErrorSUT()
         
         // 2. WHEN
-        sut?.fetchLaunches()
+        sut?.fetchLaunches(category: .all)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished:

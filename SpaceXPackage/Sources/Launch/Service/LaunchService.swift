@@ -21,9 +21,9 @@ public class LaunchService: LaunchServiceInput {
         self.baseRequest = baseRequest
     }
     
-    public func fetchLaunches() -> AnyPublisher<Launches, LaunchAPIError> {
+    public func fetchLaunches(category: LaunchType) -> AnyPublisher<Launches, LaunchAPIError> {
         
-        guard let url = url() else { return Fail(error: LaunchAPIError(type: .unknown)).eraseToAnyPublisher() }
+        guard let url = url(category: category) else { return Fail(error: LaunchAPIError(type: .unknown)).eraseToAnyPublisher() }
         
         return baseRequest.fetch(url: url)
             .decode(type: LaunchResult.self, decoder: JSONDecoder())
@@ -42,10 +42,20 @@ public class LaunchService: LaunchServiceInput {
 
 // MARK: - ASSISTANT FUNCTIONS -
 extension LaunchService {
-    private func url() -> URL? {
+    private func url(category: LaunchType) -> URL? {
         let defaultURLString = APIConstant.baseURLString + APIConstant.launches
-        let URLString = next.isEmpty ? defaultURLString : next
+        var stringURL = next.isEmpty ? defaultURLString : next
         
-        return URLComponents(string: URLString)?.url
+        switch category {
+        case .past:
+            stringURL = APIConstant.baseURLString + APIConstant.pastLaunches
+        case .upcoming:
+            stringURL = APIConstant.baseURLString + APIConstant.upcomingLaunches
+            
+        default:
+            break
+        }
+        
+        return URLComponents(string: stringURL)?.url
     }
 }

@@ -20,7 +20,7 @@ class LaunchModelTests: XCTestCase {
         let expected = "1957/10/04"
         
         // 2. WHEN
-        let launches = sut.getLaunches()
+        let launches = sut.filteredLaunches()
         
         // 3. THEN
         XCTAssertEqual(launches.first?.date, expected)
@@ -53,7 +53,7 @@ class LaunchModelTests: XCTestCase {
         XCTAssertEqual(sut.launches.first?.rocket, expected)
     }
     
-    func test_shouldFilter_2007Launches() {
+    func test_shouldFilter_1957Launches() {
         // 1. GIVEN
         let sut: LaunchModel = makeSUT()
         let yearExpected = "1957"
@@ -61,7 +61,7 @@ class LaunchModelTests: XCTestCase {
         let expectedName = "Sputnik 2"
         
         // 2. WHEN
-        let result = sut.getLaunches(text: yearExpected)
+        let result = sut.filteredLaunches(text: yearExpected)
         
         // 3. THEN
         XCTAssertFalse(result.isEmpty)
@@ -78,7 +78,7 @@ class LaunchModelTests: XCTestCase {
         let thirdDateExpected = "1958/08/25"
         
         // 2. WHEN
-        let result = sut.getLaunches(sort: .asc)
+        let result = sut.filteredLaunches(sort: .asc)
         
         // 3. THEN
         XCTAssertFalse(result.isEmpty)
@@ -96,7 +96,7 @@ class LaunchModelTests: XCTestCase {
         let thirdYearExpected = "1957/10/04"
         
         // 2. WHEN
-        let result = sut.getLaunches(sort: .desc)
+        let result = sut.filteredLaunches(sort: .desc)
         
         // 3. THEN
         XCTAssertFalse(result.isEmpty)
@@ -123,7 +123,9 @@ extension LaunchModelTests {
     private func makeSUT() -> LaunchModel {
         let baseRequestSpy = BaseRequestSuccessHandlerSpy(service: .launch)
         let service = LaunchService(baseRequest: baseRequestSpy)
-        return LaunchModel(service: service, dateHelper: dateHelper)
+        let model = LaunchModel(service: service, dateHelper: dateHelper)
+        model.category = .all
+        return model
     }
     
     private func makeSUTErrorHandler() -> LaunchModel {

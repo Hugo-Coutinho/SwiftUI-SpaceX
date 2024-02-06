@@ -12,6 +12,8 @@ import HGCore
 import UIComponent
 
 struct HomeView: View {
+    @EnvironmentObject public var launchModel: LaunchModel
+    
     var body: some View {
         NavigationView {
             ScrollView {
@@ -34,15 +36,21 @@ struct HomeView: View {
         VStack {
             HeaderView(headerText: "Launches")
             
-            NavigationLink(destination: LaunchView(type: .upcoming)) {
+            NavigationLink(destination: LaunchView({
+                launchModel.category = .upcoming
+            })) {
                 BannerView(imageURLString: APIConstant.upcomingImageUrlString, title: "Upcoming Launches")
             }
             
-            NavigationLink(destination: LaunchView(type: .past)) {
+            NavigationLink(destination: LaunchView({
+                launchModel.category = .past
+            })) {
                 BannerView(imageURLString: APIConstant.pastImageUrlString, title: "Past Launches")
             }
             
-            NavigationLink(destination: LaunchView(type: .all)) {
+            NavigationLink(destination: LaunchView({
+                launchModel.category = .all
+            })) {
                 BannerView(imageURLString: APIConstant.allImageUrlString, title: "All Launches")
             }
         }

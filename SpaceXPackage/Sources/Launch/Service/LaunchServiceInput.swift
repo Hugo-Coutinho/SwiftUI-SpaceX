@@ -8,6 +8,7 @@
 
 import Foundation
 import Combine
+import HGCore
 
 // MARK: - SERVICE INPUT PROTOCOL -
 public protocol LaunchServiceInput: AnyObject {
@@ -15,5 +16,5 @@ public protocol LaunchServiceInput: AnyObject {
     var baseRequest: LaunchNetworkInput { get set }
 
     // MARK: - INPUT METHODS -
-    func fetchLaunches() -> AnyPublisher<Launches, LaunchAPIError>
+    func fetchLaunches(category: LaunchType) -> AnyPublisher<Launches, LaunchAPIError>
 }

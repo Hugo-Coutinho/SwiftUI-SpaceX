@@ -11,22 +11,22 @@ import UIComponent
 
 public struct LaunchView: View {
     
-    @EnvironmentObject public var launchModel: LaunchModel
+    @EnvironmentObject public var model: LaunchModel
     @State public var inputText = ""
     @State public var pickerSelected: AppBarScopedButtons = AppBarScopedButtons.asc
     
-    let type: LaunchType
+    let category: () -> Void
     
     // MARK: - VIEWS -    
     var LaunchSection: some View {
         Section(header: Text("Launch")) {
-            let launches = launchModel.getLaunches(text: inputText, sort: pickerSelected)
+            let launches = model.filteredLaunches(text: inputText, sort: pickerSelected)
             ForEach(launches.indices, id: \.self) { launchIndex in
                 let launch = launches[launchIndex]
                 LaunchItemView(launch: launch)
                     .onAppear {
                         if launchIndex == launches.count - 1 {
-                            launchModel.loadMoreContentIfNeeded(isUserTexting: !inputText.isEmpty)
+                            model.loadMoreContentIfNeeded(isUserTexting: !inputText.isEmpty)
                         }
                     }
             }
@@ -34,35 +34,40 @@ public struct LaunchView: View {
     }
     
     // MARK: - CONSTRUCTOR -
-    public init(type: LaunchType) {
-        self.type = type
+    public init(_ type: @escaping () -> Void) {
+        self.category = type
     }
     
     public var body: some View {
         VStack {
             AppBarView(inputText: $inputText, pickerSelected: $pickerSelected)
-                .navigationTitle(type.longTitle)
+                .navigationTitle(model.category.longTitle)
                 .navigationBarTitleDisplayMode(.inline)
+            
             List {
                 LaunchSection
             }
             
-            if launchModel.isLoadingPage {
+            if model.isLoadingPage {
                 ProgressView()
             }
+        }
+        .onAppear {
+            category()
         }
     }
 }
 
 struct SwiftUISpaceXListView_Previews: PreviewProvider {
     static var previews: some View {
-        LaunchView(type: .all)
+        LaunchView({})
             .environmentObject(getLaunchModel())
         .previewLayout(.device)
     }
     
     static func getLaunchModel() -> LaunchModel {
         let model = LaunchBuilder().makeModel()
+        model.category = .all
         return model
     }
 }
