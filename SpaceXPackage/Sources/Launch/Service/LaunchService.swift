@@ -15,6 +15,13 @@ public class LaunchService: LaunchServiceInput {
     // MARK: - VARIABLES -
     public var baseRequest: LaunchNetworkInput
     private var next = ""
+    private var currentCategory: LaunchType = .all {
+        didSet {
+            if currentCategory != oldValue {
+                next = ""
+            }
+        }
+    }
     
     // MARK: - CONSTRUCTOR -
     public init(baseRequest: LaunchNetworkInput) {
@@ -23,7 +30,8 @@ public class LaunchService: LaunchServiceInput {
     
     public func fetchLaunches(category: LaunchType) -> AnyPublisher<Launches, LaunchAPIError> {
         
-        guard let url = url(category: category) else { return Fail(error: LaunchAPIError(type: .unknown)).eraseToAnyPublisher() }
+        currentCategory = category
+        guard let url = url() else { return Fail(error: LaunchAPIError(type: .unknown)).eraseToAnyPublisher() }
         
         return baseRequest.fetch(url: url)
             .decode(type: LaunchResult.self, decoder: JSONDecoder())
@@ -42,18 +50,21 @@ public class LaunchService: LaunchServiceInput {
 
 // MARK: - ASSISTANT FUNCTIONS -
 extension LaunchService {
-    private func url(category: LaunchType) -> URL? {
-        let defaultURLString = APIConstant.baseURLString + APIConstant.launches
-        var stringURL = next.isEmpty ? defaultURLString : next
+    private func url() -> URL? {
+        var stringURL: String = ""
         
-        switch category {
+        switch currentCategory {
         case .past:
-            stringURL = APIConstant.baseURLString + APIConstant.pastLaunches
-        case .upcoming:
-            stringURL = APIConstant.baseURLString + APIConstant.upcomingLaunches
+            let defaultURLString = APIConstant.baseURLString + APIConstant.pastLaunches
+            stringURL = next.isEmpty ? defaultURLString : next
             
-        default:
-            break
+        case .upcoming:
+            let defaultURLString = APIConstant.baseURLString + APIConstant.upcomingLaunches
+            stringURL = next.isEmpty ? defaultURLString : next
+            
+        case .all:
+            let defaultURLString = APIConstant.baseURLString + APIConstant.launches
+            stringURL = next.isEmpty ? defaultURLString : next
         }
         
         return URLComponents(string: stringURL)?.url

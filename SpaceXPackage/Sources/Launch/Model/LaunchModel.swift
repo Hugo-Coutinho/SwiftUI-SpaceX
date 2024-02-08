@@ -13,14 +13,21 @@ import Combine
 public class LaunchModel: ObservableObject {
     // MARK: - PROPERTIES -
     @Published public var launches: LaunchItems = []
-    @Published public var isLoadingPage = false
+    @Published public var isLoadingMoreContent = false
+    @Published public var state: State = .idle
     
     public var category: LaunchType = .all {
         didSet {
-            fetchingLaunches()
-                .map { $0 }
-                .assign(to: &$launches)
+            launches = []
+            state = .loading
+            receiveLaunches()
         }
+    }
+    
+    public enum State {
+        case idle
+        case loading
+        case loaded
     }
     
     private var service: LaunchServiceInput
@@ -51,33 +58,47 @@ public class LaunchModel: ObservableObject {
     }
     
     public func loadMoreContentIfNeeded(isUserTexting: Bool) {
-        guard !isLoadingPage,
+        guard !isLoadingMoreContent,
               !isUserTexting else { return }
         
-        isLoadingPage = true
-        fetchingLaunches()
-            .map { $0 }
-            .sink (receiveValue: { [weak self] items in
-                guard let self = self else { return }
-                
-                self.isLoadingPage = false
-                self.launches.append(contentsOf: items)
-                self.objectWillChange.send()
-            })
-            .store(in: &cancellables)
+        isLoadingMoreContent = true
+        receiveLaunches()
     }
 }
 
 // MARK: - ASSISTANT METHODS -
 extension LaunchModel {
-    private func fetchingLaunches() -> AnyPublisher<LaunchItems, Never> {
+    private func receiveLaunches() {
+        fetchingLaunches()
+            .map { $0 }
+            .sink (receiveValue: { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success(let launches):
+                    self.state = .loaded
+                    self.isLoadingMoreContent = false
+                    self.launches.append(contentsOf: launches)
+                    self.objectWillChange.send()
+                    
+                case .failure(_):
+                    fatalError()
+                }
+            })
+            .store(in: &cancellables)
+    }
+    
+    private func fetchingLaunches() -> AnyPublisher<Result<LaunchItems, Error>, Never> {
         return service.fetchLaunches(category: category)
             .compactMap { [weak self] in
                 guard let self = self else { return nil }
                 
                 return self.mapLaunches(launches: $0)
             }
-            .replaceError(with: [])
+            .map { Result.success($0) }
+            .catch { error in
+                Just(Result.failure(error))
+            }
             .eraseToAnyPublisher()
     }
     

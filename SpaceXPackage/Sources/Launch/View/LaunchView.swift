@@ -1,6 +1,6 @@
 //
 //  SwiftUIViewController.swift
-//  
+//
 //
 //  Created by Hugo on 22/08/2022.
 //
@@ -17,7 +17,7 @@ public struct LaunchView: View {
     
     let category: () -> Void
     
-    // MARK: - VIEWS -    
+    // MARK: - VIEWS -
     var LaunchSection: some View {
         Section(header: Text("Launch")) {
             let launches = model.filteredLaunches(text: inputText, sort: pickerSelected)
@@ -40,6 +40,24 @@ public struct LaunchView: View {
     
     public var body: some View {
         VStack {
+            switch model.state {
+            case .loading:
+                ProgressView()
+                
+            case .loaded:
+                launchContent
+                
+            case .idle:
+                EmptyView()
+            }
+        }
+        .onAppear {
+            category()
+        }
+    }
+    
+    var launchContent: some View {
+        Group {
             AppBarView(inputText: $inputText, pickerSelected: $pickerSelected)
                 .navigationTitle(model.category.longTitle)
                 .navigationBarTitleDisplayMode(.inline)
@@ -48,12 +66,9 @@ public struct LaunchView: View {
                 LaunchSection
             }
             
-            if model.isLoadingPage {
+            if model.isLoadingMoreContent {
                 ProgressView()
             }
-        }
-        .onAppear {
-            category()
         }
     }
 }
@@ -62,7 +77,7 @@ struct SwiftUISpaceXListView_Previews: PreviewProvider {
     static var previews: some View {
         LaunchView({})
             .environmentObject(getLaunchModel())
-        .previewLayout(.device)
+            .previewLayout(.device)
     }
     
     static func getLaunchModel() -> LaunchModel {
