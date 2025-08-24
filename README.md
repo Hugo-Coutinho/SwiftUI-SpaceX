@@ -1,23 +1,9 @@
 # SpaceX
-<div style="text-align: center">
-    <table>
-        <tr>
-            <td style="text-align: center">
-                    <img src="https://github.com/Hugo-Coutinho/SwiftUI-SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/filtering.gif?raw=true" width="250" height="450"/>
-                </a>
-            </td>            
-            </td>            
-            <td style="text-align: center">
-                    <img src="https://github.com/Hugo-Coutinho/SwiftUI-SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/scrolling.gif?raw=true" width="250" height="450"/>
-                </a>
-            </td>    
-                   <td style="text-align: center">
-                    <img src="https://github.com/Hugo-Coutinho/SwiftUI-SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/sorting.gif?raw=true" width="250" height="450"/>
-                </a>
-            </td>    
-        </tr>   
-    </table>
-</div>
+<p float="left">
+  <img src="https://github.com/Hugo-Coutinho/SwiftUI-SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/filtering.gif?raw=true" width="250"/>
+  <img src="https://github.com/Hugo-Coutinho/SwiftUI-SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/scrolling.gif?raw=true" width="250"/>
+  <img src="https://github.com/Hugo-Coutinho/SwiftUI-SpaceX/blob/master/SpaceX/Core/Helper/readme%20gifs/sorting.gif?raw=true" width="250"/>
+</p>
 
 ## SwiftUI
 
